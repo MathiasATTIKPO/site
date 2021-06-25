@@ -3,9 +3,9 @@ import Info from './Info';
 
  export default function Product (props){
      const {product}=props;
-     return (
+     return ( 
         <div key={product._id} className="offre">
-        <a  className="normal" href ={`/product/${product._id}`} >
+        <a className="normal" href ={`/product/${product._id}`} >
             <img src={product.image} alt= {product.name} ></img>
         </a>
         <div className="offre-body"> 
