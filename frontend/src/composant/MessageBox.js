@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function MessageBox(){
+export default function MessageBox(props){
     return(
         <div className={`alert alert-${props.variant ||'info'}`}>
-            {propos.children}
+            {props.children}
         </div>
     )
 }

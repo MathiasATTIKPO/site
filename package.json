@@ -13,7 +13,7 @@
     "nodemon": "^2.0.7"
   },
   "scripts": {
-    "start": "nodemon --watch backend -exec node  --experimental-modules backend/server.js"
+    "start": "nodemon --watch backend --exec node  --experimental-modules backend/server.js"
   },
   "repository": {
     "type": "git",
