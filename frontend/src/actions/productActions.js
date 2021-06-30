@@ -6,12 +6,12 @@ import {
     PRODUCT_LIST_SUCCESS } from "../constante/productConstante"
 import Axios from "axios";
 
-export const listProducts = () => async (dispatch) =>{
+export const listProducts = () => async (dispatch) => {
     dispatch({
-        type :PRODUCT_LIST_REQUEST,
+        type :PRODUCT_LIST_REQUEST
     });
     try{
-        const {data}=await Axios.get('/api/products');
+        const { data }= await Axios.get('/api/products');
         dispatch( {type : PRODUCT_LIST_SUCCESS, payload: data} );
     }catch(error){
         dispatch( {type:PRODUCT_LIST_FAIL, payload: error.message});
@@ -28,7 +28,8 @@ export const detailsProduct = (productId) =>async(dispatch) =>{
     } catch (error) {
         dispatch({
             type: PRODUCT_DETAILS_FAIL,
-            payload :error.message.response && error.response.data.message
+            payload :
+            error.message.response && error.response.data.message
             ? error.response.data.message
             :error.message,
         });
