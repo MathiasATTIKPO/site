@@ -5,26 +5,36 @@ import {Link }from 'react-router-dom';
 import LoadingBox from '../composant/LoadingBox';
 import MessageBox from '../composant/MessageBox';
 import { detailsProduct } from '../actions/productActions';
+
+
 export default function ProductScreen(props){
     const dispatch = useDispatch();
-    const productId = props.match.params.Id;
-  const productDetails = useSelector(state => state.productDetails);
-  const {loading,error,product} = productDetails ;
-    useEffect( () =>{
+    const productId = props.match.params.id;
+    const productDetails = useSelector((state) => state.productDetails);
+    const { loading, error, product } = productDetails;
+
+    useEffect (() =>{
         dispatch(detailsProduct(productId));
-    } ,[dispatch,productId]);
+    } ,[dispatch, productId]);
+    const addToCartHandler = () => {
+        props.history.push(`/cart/${productId}`);
+      };
+
     return(
         <div>
-         {loading ? (
-           <LoadingBox></LoadingBox>
-         ): error ?(
-           <MessageBox  variant="danger">{error}</MessageBox>
-         ) :(
-            <div>
+        {loading ? (
+        <LoadingBox></LoadingBox>
+        ) : error ? (
+        <MessageBox variant="danger">{error}</MessageBox>
+        ) : (
+        <div>
             <Link to="/"> RETOUR  </Link>
             <div className="row top">
                  <div className="col-2" >
-                     <img className="large" src={product.image} alt={product.name}></img>
+                    <img className="large" 
+                        src={product.image} 
+                        alt={product.name}
+                    ></img>
                  </div>
                  <div className="col-1" >
                      <ul>
@@ -34,8 +44,9 @@ export default function ProductScreen(props){
                          
                          </li>
                          <li>
-                             <Info info= {product.info} 
-                             numReviews = {product.numReviews} 
+                             <Info 
+                                info= {product.info} 
+                                numReviews = {product.numReviews} 
                              ></Info>
                          </li>
                          <li>
@@ -72,9 +83,21 @@ export default function ProductScreen(props){
                                      </div>
                                  </div>
                              </li>
-                             <li>
-                                 <button className="primary block"> Ajouter a la carte</button>
-                             </li>
+                             {
+                                product.countInStock > 0 && (
+                                <>
+                                    <li>
+                                        <button
+                                            onClick={addToCartHandler}
+                                            className="primary block"
+                                        >
+                                           À visiter
+                                        </button>
+                                    </li>
+                                </>
+                                )
+                            }
+                             
                          </ul>
                      </div>
                  </div>

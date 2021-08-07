@@ -39,6 +39,14 @@ footer{
   background-color: #798b7d;
   color: #ffffff;
 }
+.badge{
+  background-color :#f02020 ;
+  color : #ffffff;
+  border-radius: 50%;
+  padding : 0.2rem 0.7rem;
+  font-size: 1.4rem;
+  margin-left: 0.2rem;
+}
 .row{
   display: flex;
   flex-wrap: wrap;
@@ -58,6 +66,9 @@ footer{
 .col-2{
   flex: 2 1 50rem ;
 }
+.min-30{
+  min-width: 0.5rem;
+}
 a{
   text-decoration: none;
 }
@@ -73,6 +84,9 @@ li{
   margin-top: 1rem;
 
 }
+input,
+select,
+textarea,
 button{
   padding: 1rem;
   border-radius: 0.5rem;
@@ -90,6 +104,9 @@ button.primary{
 button.block{
   width: 100%  ;
 }
+input:hover,
+select:hover,
+textarea:hover,
 button:hover{
   border: 0.1rem #404040;
 }
@@ -109,7 +126,11 @@ header a{
 img{
   border-radius: 0.5rem ;
 }
-img.normal{
+img.small{
+  max-width: 5rem;
+  width: 100%;
+}
+img.mediun{
   max-width: 29rem;
   width: 100%;
 

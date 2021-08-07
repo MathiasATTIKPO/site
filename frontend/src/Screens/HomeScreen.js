@@ -11,12 +11,12 @@ import { listProducts } from '../actions/productActions';
      const dispatch = useDispatch();
       useEffect(() =>{ 
          dispatch(listProducts());
-      }, [dispatch] );
+      }, [dispatch]);
      return(
        <div>
          {loading ? (
            <LoadingBox></LoadingBox>
-         ): error ?(
+         ): error ? (
            <MessageBox  variant="danger">{error}</MessageBox>
          ) :(
           <div className="row center">
