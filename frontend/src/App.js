@@ -5,6 +5,7 @@ import {useSelector } from 'react-redux';
 import HomeScreen from './Screens/HomeScreen';
 import ProductScreen from './Screens/ProductScreen';
 import CartScreen from './Screens/CartScreen';
+//import SigninScreen from './Screens/SigninScreen';
 
 
 
@@ -12,6 +13,8 @@ function App() {
 
     const cart = useSelector(state => state.cart);
     const {cartItems} = cart ;
+    //const userSignin = useSelector((state) => state.userSignin);
+    //const { userInfo } = userSignin;
   return (
     <BrowserRouter >
     <div className="grid-container">

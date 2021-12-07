@@ -46,7 +46,7 @@ export default function CartScreen(props){
                                             <Link to={`/product/${item.product}`}>{item.name}</Link>
                                         </div>
                                         <div>
-                                            XOF {item.prix}
+                                            {item.prix} XOF 
                                         </div>
                                         <div>
                                             <button type="button" onClick={() => removeFromCartHandler(item.product)}>

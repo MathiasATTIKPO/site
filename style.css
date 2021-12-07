@@ -77,9 +77,7 @@ img.normal{
 .offre-body{
     padding: 1rem;
 }
-.offre-body >*{
-    margin-bottom: 0.5rem;
-}
+
 h1{
     font-size: 1.8rem;
     padding: 1rem 0;

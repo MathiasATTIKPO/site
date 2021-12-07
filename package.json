@@ -3,7 +3,7 @@
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
-    "mongoose": "^5.13.5"
+    "mongoose": "^5.13.8"
   },
   "name": "site",
   "type": "module",

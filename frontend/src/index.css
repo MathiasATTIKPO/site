@@ -122,20 +122,19 @@ header a{
       color: #ffffff;
       padding: 1rem;
 }
-/* image */
-img{
-  border-radius: 0.5rem ;
+/* Image */
+img {
+  border-radius: 0.5rem;
 }
-img.small{
+img.small {
   max-width: 5rem;
   width: 100%;
 }
-img.mediun{
+img.medium {
   max-width: 29rem;
   width: 100%;
-
 }
-img.large{
+img.large {
   width: 100%;
 }
 /*offre*/
@@ -164,11 +163,11 @@ h2{
   font-size: 2rem ;
 }
 
-.offre span{ 
+.rating span{ 
   color: #f0c040;
   margin: 0.1rem ;
 }
-.offre span:last-child{
+.rating span:last-child{
   color:#404040;
 }
 

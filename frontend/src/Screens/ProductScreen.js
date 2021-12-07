@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Info from '../composant/Info';
+import Rating from '../composant/Rating';
 import { useSelector , useDispatch } from 'react-redux';
 import {Link }from 'react-router-dom';
 import LoadingBox from '../composant/LoadingBox';
@@ -31,10 +31,7 @@ export default function ProductScreen(props){
             <Link to="/"> RETOUR  </Link>
             <div className="row top">
                  <div className="col-2" >
-                    <img className="large" 
-                        src={product.image} 
-                        alt={product.name}
-                    ></img>
+                    <img className="large" src={product.image} alt={product.name}></img>
                  </div>
                  <div className="col-1" >
                      <ul>
@@ -44,14 +41,14 @@ export default function ProductScreen(props){
                          
                          </li>
                          <li>
-                             <Info 
-                                info= {product.info} 
+                             <Rating 
+                                rating= {product.rating} 
                                 numReviews = {product.numReviews} 
-                             ></Info>
+                             ></Rating>
                          </li>
                          <li>
-                             Prix:
-                             XOF {product.prix}
+                             Prix:    
+                                {product.prix}  XOF
                          </li>
                          <li>
                              Description:
@@ -68,7 +65,7 @@ export default function ProductScreen(props){
                                          Prix:
                                      </div>
                                      <div className="prix"> 
-                                         XOF{product.prix}
+                                         XOF  {product.prix}
                                      </div>   
                                  </div>
                              </li>

@@ -1,15 +1,15 @@
 import React from 'react';
 
-export default function info(props) {
-  const { info, numReviews, caption } = props;
+export default function Rating(props) {
+  const { rating, numReviews, caption } = props;
   return (
-    <div className="info">
+    <div className="rating">
       <span>
         <i
           className={
-            info >= 1
+            rating >= 1
               ? 'fa fa-star'
-              : info >= 0.5
+              : rating >= 0.5
               ? 'fa fa-star-half-o'
               : 'fa fa-star-o'
           }
@@ -18,9 +18,9 @@ export default function info(props) {
       <span>
         <i
           className={
-            info >= 2
+            rating >= 2
               ? 'fa fa-star'
-              : info >= 1.5
+              : rating >= 1.5
               ? 'fa fa-star-half-o'
               : 'fa fa-star-o'
           }
@@ -29,9 +29,9 @@ export default function info(props) {
       <span>
         <i
           className={
-            info >= 3
+            rating >= 3
               ? 'fa fa-star'
-              : info >= 2.5
+              : rating >= 2.5
               ? 'fa fa-star-half-o'
               : 'fa fa-star-o'
           }
@@ -40,9 +40,9 @@ export default function info(props) {
       <span>
         <i
           className={
-            info >= 4
+            rating >= 4
               ? 'fa fa-star'
-              : info >= 3.5
+              : rating >= 3.5
               ? 'fa fa-star-half-o'
               : 'fa fa-star-o'
           }
@@ -51,9 +51,9 @@ export default function info(props) {
       <span>
         <i
           className={
-            info >= 5
+            rating >= 5
               ? 'fa fa-star'
-              : info >= 4.5
+              : rating >= 4.5
               ? 'fa fa-star-half-o'
               : 'fa fa-star-o'
           }
@@ -62,7 +62,7 @@ export default function info(props) {
       {caption ? (
         <span>{caption}</span>
       ) : (
-        <span>{numReviews + ' reviews'}</span>
+        <span>{numReviews + ' visiteurs'}</span>
       )}
     </div>
   );
