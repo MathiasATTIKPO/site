@@ -19,8 +19,8 @@ export default function ProductScreen(props){
     const addToCartHandler = () => {
         props.history.push(`/cart/${productId}`);
       };
-
     return(
+        
         <div>
         {loading ? (
         <LoadingBox></LoadingBox>
@@ -30,9 +30,13 @@ export default function ProductScreen(props){
         <div>
             <Link to="/"> RETOUR  </Link>
             <div className="row top">
-                 <div className="col-2" >
-                    <img className="large" src={product.image} alt={product.name}></img>
-                 </div>
+            <div className="col-2">
+              <img
+                className="large"
+                src={product.image}
+                alt={product.name}
+              ></img>
+            </div>
                  <div className="col-1" >
                      <ul>
                          <li> 
@@ -54,6 +58,11 @@ export default function ProductScreen(props){
                              Description:
                              <p>{product.description} </p>
                          </li>
+                         <li>
+                         <img className="img.small"
+                                src={product.image}
+                                alt={product.name}></img>
+                        </li>
                      </ul>
                  </div>
                  <div className="col-1">
@@ -66,14 +75,15 @@ export default function ProductScreen(props){
                                      </div>
                                      <div className="prix"> 
                                          XOF  {product.prix}
-                                     </div>   
+                                     </div>
+                                        
                                  </div>
                              </li>
                              <li>
                                  <div className="row">
                                      <div> Status :</div>
                                      <div>
-                                         {product.countInStock>0? (<span className="success"> Libre </span>
+                                         {product.countInStock ==="libre"? (<span className="success"> Libre </span>
                                          ):(
                                              <span className="danger"> Indisponible </span>)
                                          }
@@ -81,7 +91,7 @@ export default function ProductScreen(props){
                                  </div>
                              </li>
                              {
-                                product.countInStock > 0 && (
+                                product.countInStock ==="libre" && (
                                 <>
                                     <li>
                                         <button

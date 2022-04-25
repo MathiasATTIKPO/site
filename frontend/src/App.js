@@ -5,7 +5,8 @@ import {useSelector } from 'react-redux';
 import HomeScreen from './Screens/HomeScreen';
 import ProductScreen from './Screens/ProductScreen';
 import CartScreen from './Screens/CartScreen';
-//import SigninScreen from './Screens/SigninScreen';
+import SearchBox from './composant/SearchBox';
+import SigninScreen from './Screens/SigninScreen';
 
 
 
@@ -23,7 +24,14 @@ function App() {
                 <Link className="brand" to="/"> LOCA LOLI  </Link>
             </div>
             <div>
-                <Link to="/offre"> CARTES  
+            <Route
+              render={({ history }) => (
+                <SearchBox   history={history}></SearchBox>
+              )}
+            ></Route>
+          </div>
+            <div>
+                <Link to="/cart"> CARTES  
                 {cartItems.length > 0 && (
                     <span className ="badge">{cartItems.length}</span>
                 )
@@ -36,6 +44,7 @@ function App() {
             <Route path='/cart/:id?' component={CartScreen}></Route>
             <Route  path='/product/:id' component={ProductScreen}></Route>
             <Route path='/' component={HomeScreen} exact></Route>
+            <Route path='/sign/:id' component={SigninScreen}></Route>
         </main>
         <footer className="row center">
             TOUTS LES DROITS SONT RESERVERS 
