@@ -170,7 +170,10 @@ h2{
 }
 
 /* alert*/
-
+.loading{
+  display: block !important;
+  
+}
 .success{
   color: #20a020;
 }

@@ -8,6 +8,7 @@ import CartScreen from './Screens/CartScreen.js';
 import SearchBox from './composant/SearchBox.js';
 import SigninScreen from './Screens/SigninScreen.js';
 import { signout } from './actions/userActions.js';
+import RegisterScreen from './Screens/RegisterScreen.js';
 
 
 
@@ -16,6 +17,7 @@ function App() {
     const cart = useSelector(state => state.cart);
     const {cartItems} = cart ;
     const userSignin = useSelector((state) => state.userSignin);
+    //const userRegister = useSelector((state) => state.userRegister);
     const { userInfo } = userSignin;
     const dispatch = useDispatch();
     const signoutHandler = () =>{
@@ -65,9 +67,10 @@ function App() {
             <Route  path='/product/:id' component={ProductScreen}></Route>
             <Route path='/' component={HomeScreen} exact></Route>
             <Route path='/signin' component={SigninScreen}></Route>
+            <Route path='/register' component={RegisterScreen}></Route>
         </main>
         <footer className="row center">
-            TOUTS LES DROITS SONT RESERVERS 
+           <h6> TOUTS LES DROITS SONT RESERVERS</h6> 
         </footer>
     </div>
     </BrowserRouter>
