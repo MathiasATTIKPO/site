@@ -20,9 +20,9 @@ export default function CartScreen(props){
     // delete action
     dispatch(removeFromCart(id));
   };
-     const checkoutHandler =()=>{
+     /*const checkoutHandler =()=>{
          props.history.push('/signin?redirec=shipping')
-     };
+     };*/
     return (
         <div className="row top">
             <div className="col-2">
@@ -68,7 +68,7 @@ export default function CartScreen(props){
                         <li>
                            <button 
                                 type="button" 
-                                onClick={checkoutHandler} 
+                                //onClick={checkoutHandler} 
                                 className="primary block" 
                                 disabled={cartItems.length===0}>
                                      Confirmer la visite 

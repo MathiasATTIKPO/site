@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter  ,Route,Link
 } from "react-router-dom";
-import {useSelector } from 'react-redux';
-import HomeScreen from './Screens/HomeScreen';
-import ProductScreen from './Screens/ProductScreen';
-import CartScreen from './Screens/CartScreen';
-import SearchBox from './composant/SearchBox';
-import SigninScreen from './Screens/SigninScreen';
+import {useDispatch, useSelector } from 'react-redux';
+import HomeScreen from './Screens/HomeScreen.js';
+import ProductScreen from './Screens/ProductScreen.js';
+import CartScreen from './Screens/CartScreen.js';
+import SearchBox from './composant/SearchBox.js';
+import SigninScreen from './Screens/SigninScreen.js';
+import { signout } from './actions/userActions.js';
 
 
 
@@ -14,8 +15,13 @@ function App() {
 
     const cart = useSelector(state => state.cart);
     const {cartItems} = cart ;
-    //const userSignin = useSelector((state) => state.userSignin);
-    //const { userInfo } = userSignin;
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
+    const dispatch = useDispatch();
+    const signoutHandler = () =>{
+      dispatch(signout());
+    }
+
   return (
     <BrowserRouter >
     <div className="grid-container">
@@ -37,14 +43,28 @@ function App() {
                 )
                 }
                 </Link>
-                <Link to="/se_connecter">SE CONNECTER</Link>
+                {
+                  userInfo ?(
+
+                  <div className="dropdown">
+                    <Link to="#">{userInfo.name} <i className="fa fa-caret-down"></i>{' '}</Link> 
+                    <ul className="dropdown-content">
+                      <Link to="#signout" onClick={signoutHandler}> Sign out</Link>
+                    </ul>
+                  </div>
+                  ): 
+                  (
+                    <Link to="/signin">SE CONNECTER</Link>
+                  )
+                }
+                
             </div>
         </header>
         <main>
             <Route path='/cart/:id?' component={CartScreen}></Route>
             <Route  path='/product/:id' component={ProductScreen}></Route>
             <Route path='/' component={HomeScreen} exact></Route>
-            <Route path='/sign/:id' component={SigninScreen}></Route>
+            <Route path='/signin' component={SigninScreen}></Route>
         </main>
         <footer className="row center">
             TOUTS LES DROITS SONT RESERVERS 

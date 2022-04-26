@@ -1,10 +1,13 @@
 import express from 'express';
 import  Mongoose  from 'mongoose';
-import data from './data.js';
+import dotenv from 'dotenv';
 import productRouter from './routers/productRouter.js';
 import userRouter from './routers/userRouter.js';
- const app = express();
 
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}))
+ dotenv.config();
 Mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/SITE',{
     userNewUrlParser: true ,
     useUnifiedTopology:true ,

@@ -4,17 +4,19 @@ import { Link } from 'react-router-dom';
 import { signin } from '../actions/userActions';
 import LoadingBox from '../composant/LoadingBox';
 import MessageBox from '../composant/MessageBox';
+//import LoadingBox from '../composant/LoadingBox';
+//import MessageBox from '../composant/MessageBox';
 
 export default function SigninScreen(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const redirect = props.location.search
-    ? props.location.search.split('=')[1]
-    : '/';
+   ? props.location.search.split('=')[1]
+  : '/';
 
   const userSignin = useSelector((state) => state.userSignin);
-  const { userInfo, loading, error } = userSignin;
+  const { userInfo , error ,loading} = userSignin;
 
   const dispatch = useDispatch();
   const submitHandler = (e) => {
@@ -24,8 +26,10 @@ export default function SigninScreen(props) {
   useEffect(() => {
     if (userInfo) {
       props.history.push(redirect);
-    }
+  }
   }, [props.history, redirect, userInfo]);
+  
+  
   return (
     <div>
       <form className="form" onSubmit={submitHandler}>
@@ -64,7 +68,7 @@ export default function SigninScreen(props) {
           <label />
           <div>
             New customer?{' '}
-            <Link to={`/register?redirect=${redirect}`}>
+            <Link to={`/register`}>
               Create your account
             </Link>
           </div>
