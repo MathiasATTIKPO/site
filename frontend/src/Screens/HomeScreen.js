@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react';
-import Product from '../composant/Product';
-import LoadingBox from'../composant/LoadingBox';
-import MessageBox from '../composant/MessageBox';
+import Product from '../components/Product';
+import LoadingBox from'../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../actions/productActions';
 

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import Rating from '../composant/Rating';
+import Rating from '../components/Rating';
 import { useSelector , useDispatch } from 'react-redux';
 import {Link }from 'react-router-dom';
-import LoadingBox from '../composant/LoadingBox';
-import MessageBox from '../composant/MessageBox';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 import { detailsProduct } from '../actions/productActions';
 
 
@@ -21,7 +21,7 @@ export default function ProductScreen(props){
       };
     return(
         
-        <div>
+    <div>
         {loading ? (
         <LoadingBox></LoadingBox>
         ) : error ? (
@@ -30,69 +30,69 @@ export default function ProductScreen(props){
         <div>
             <Link to="/"> RETOUR  </Link>
             <div className="row top">
-            <div className="col-2">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="large"
-              ></img>
-            </div>
-                 <div className="col-1" >
-                     <ul>
-                         <li> 
+                <div className="col-2">
+                    <img
+                        src={product.image}
+                        alt={product.name}
+                        className="large"
+                    ></img>
+                </div>
+                <div className="col-1" >
+                    <ul>
+                        <li> 
                            
-                             <h1> {product.name} </h1>  
+                            <h1> {product.name} </h1>  
                          
-                         </li>
-                         <li>
-                             <Rating 
+                        </li>
+                        <li>
+                            <Rating 
                                 rating= {product.rating} 
                                 numReviews = {product.numReviews} 
-                             ></Rating>
-                         </li>
-                         <li>
-                             Prix:    
+                            ></Rating>
+                        </li>
+                        <li>
+                            Prix:    
                                 {product.prix}  XOF
-                         </li>
-                         <li>
-                             Description:
-                             <p>{product.description} </p>
-                         </li>
-                         <li>
-                         <img 
+                        </li>
+                        <li>
+                            Description:
+                            <p>{product.description} </p>
+                        </li>
+                        <li>
+                            <img 
                                 src={product.image}
                                 alt={product.name}
                                 className="small"
-                                ></img>
+                            ></img>
                         </li>
-                     </ul>
-                 </div>
-                 <div className="col-1">
-                     <div className="offre offre-body">
-                         <ul>
-                             <li>
-                                 <div className="row">
-                                     <div>
-                                         Prix:
-                                     </div>
-                                     <div className="prix"> 
+                    </ul>
+                </div>
+                <div className="col-1">
+                    <div className="offre offre-body">
+                        <ul>
+                            <li>
+                                <div className="row">
+                                    <div>
+                                        Prix:
+                                    </div>
+                                    <div className="prix"> 
                                          XOF  {product.prix}
-                                     </div>
+                                    </div>
                                         
-                                 </div>
-                             </li>
-                             <li>
-                                 <div className="row">
-                                     <div> Status :</div>
-                                     <div>
-                                         {product.countInStock ==="libre"? (<span className="success"> Libre </span>
-                                         ):(
-                                             <span className="danger"> Indisponible </span>)
-                                         }
-                                     </div>
-                                 </div>
-                             </li>
-                             {
+                                </div>
+                            </li>
+                            <li>
+                                <div className="row">
+                                    <div> Status :</div>
+                                    <div>
+                                        {product.countInStock ==="libre"? (<span className="success"> Libre </span>
+                                        ):(
+                                            <span className="danger"> Indisponible </span>)
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                            {
                                 product.countInStock ==="libre" && (
                                 <>
                                     <li>
@@ -107,13 +107,13 @@ export default function ProductScreen(props){
                                 )
                             }
                              
-                         </ul>
-                     </div>
-                 </div>
+                        </ul>
+                    </div>
+                </div>
             </div>
-         </div>
+        </div>
          )}
-       </div>
+    </div>
        
     );
 }

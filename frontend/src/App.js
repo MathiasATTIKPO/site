@@ -5,10 +5,14 @@ import {useDispatch, useSelector } from 'react-redux';
 import HomeScreen from './Screens/HomeScreen.js';
 import ProductScreen from './Screens/ProductScreen.js';
 import CartScreen from './Screens/CartScreen.js';
-import SearchBox from './composant/SearchBox.js';
+import SearchBox from './components/SearchBox.js';
 import SigninScreen from './Screens/SigninScreen.js';
 import { signout } from './actions/userActions.js';
 import RegisterScreen from './Screens/RegisterScreen.js';
+import ShippingAdresseScreen from './Screens/ShippingAdresseScreen.js';
+import PayementScreen from './Screens/PaymentScreen.js';
+import PlaceOrderScreen from './Screens/PlaceOrderScreen.js';
+
 
 
 
@@ -67,7 +71,10 @@ function App() {
             <Route  path='/product/:id' component={ProductScreen}></Route>
             <Route path='/' component={HomeScreen} exact></Route>
             <Route path='/signin' component={SigninScreen}></Route>
+            <Route path='/shipping' component={ShippingAdresseScreen}></Route>
+            <Route path='/payement' component={PayementScreen}></Route>
             <Route path='/register' component={RegisterScreen}></Route>
+            <Route path='/placeOrder' component={PlaceOrderScreen}></Route>
         </main>
         <footer className="row center">
            <h6> TOUTS LES DROITS SONT RESERVERS</h6> 

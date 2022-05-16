@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { register } from '../actions/userActions';
-import LoadingBox from '../composant/LoadingBox';
-import MessageBox from '../composant/MessageBox';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 
 export default function RegisterScreen(props) {
   const [email, setEmail] = useState('');
@@ -35,7 +35,6 @@ export default function RegisterScreen(props) {
       props.history.push(redirect);
   }
   }, [props.history, redirect, userInfo]);
-  
   
   return (
     <div>

@@ -4,7 +4,7 @@
     PRODUCT_DETAILS_SUCCESS, 
     PRODUCT_LIST_FAIL, 
     PRODUCT_LIST_REQUEST, 
-    PRODUCT_LIST_SUCCESS } from "../constante/productConstante";
+    PRODUCT_LIST_SUCCESS } from "../constant/productConstante";
 
 export const productListReducer = (
     state ={ loading :true ,products: [] } ,
