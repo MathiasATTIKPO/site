@@ -12,6 +12,7 @@ import RegisterScreen from './Screens/RegisterScreen.js';
 import ShippingAdresseScreen from './Screens/ShippingAdresseScreen.js';
 import PayementScreen from './Screens/PaymentScreen.js';
 import PlaceOrderScreen from './Screens/PlaceOrderScreen.js';
+import OrderScreen from './Screens/OrderScreen .js';
 
 
 
@@ -69,12 +70,14 @@ function App() {
         <main>
             <Route path='/cart/:id?' component={CartScreen}></Route>
             <Route  path='/product/:id' component={ProductScreen}></Route>
-            <Route path='/' component={HomeScreen} exact></Route>
             <Route path='/signin' component={SigninScreen}></Route>
             <Route path='/shipping' component={ShippingAdresseScreen}></Route>
             <Route path='/payement' component={PayementScreen}></Route>
             <Route path='/register' component={RegisterScreen}></Route>
             <Route path='/placeOrder' component={PlaceOrderScreen}></Route>
+            <Route path='/order/:id?' component={OrderScreen}></Route>
+
+            <Route path='/' component={HomeScreen} exact></Route>
         </main>
         <footer className="row center">
            <h6> TOUTS LES DROITS SONT RESERVERS</h6> 
