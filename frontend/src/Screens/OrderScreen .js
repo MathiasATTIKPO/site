@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import Axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { detailOrder } from '../actions/orderActions';
@@ -8,13 +9,36 @@ import MessageBox from '../components/MessageBox';
 export default function OrderScreen(props){
 
     const orderId = props.match.params.id;
+    const {sdkReady , setSdkReady } = useState(false);
     const orderDetail = useSelector((state) => state.orderDetail);
     const { order,loading , error} = orderDetail;
-    console.log('order information', order);
+    //console.log('order information', order);
     const dispatch = useDispatch();
+
     useEffect(() => {
-      dispatch(detailOrder(orderId));
-    }, [dispatch, orderId]);
+      const addPayPalScript = async () => {
+        const { data } = await Axios.get('/api/config/paypal');
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
+        script.async = true;
+        script.onload = () => {
+          setSdkReady(true);
+        };
+        document.body.appendChild(script);
+      };
+
+      if(!order._id){  dispatch(detailOrder(orderId));
+      } else {
+        if (!order.isPaid) {
+          if (!window.paypal) {
+            addPayPalScript();
+          } else {
+            setSdkReady(true);
+          }
+        }
+      }
+    }, [dispatch, orderId, sdkReady , order ]);
     return loading ? (
       <LoadingBox></LoadingBox>
     ) : error ? (
