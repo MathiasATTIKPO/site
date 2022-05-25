@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import {PayPalButton} from 'react-paypal-button-v2';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -9,10 +10,9 @@ import MessageBox from '../components/MessageBox';
 export default function OrderScreen(props){
 
     const orderId = props.match.params.id;
-    const {sdkReady , setSdkReady } = useState(false);
-    const orderDetail = useSelector((state) => state.orderDetail);
-    const { order,loading , error} = orderDetail;
-    //console.log('order information', order);
+    const [sdkReady , setSdkReady ] = useState(false);
+    const orderDetails = useSelector((state) => state.orderDetail);
+    const { order,loading , error} = orderDetails;
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -28,7 +28,7 @@ export default function OrderScreen(props){
         document.body.appendChild(script);
       };
 
-      if(!order._id){  dispatch(detailOrder(orderId));
+      if(!order){  dispatch(detailOrder(orderId));
       } else {
         if (!order.isPaid) {
           if (!window.paypal) {
@@ -39,6 +39,10 @@ export default function OrderScreen(props){
         }
       }
     }, [dispatch, orderId, sdkReady , order ]);
+
+    const successPaymentHandler = () => {
+
+    }
     return loading ? (
       <LoadingBox></LoadingBox>
     ) : error ? (
@@ -138,7 +142,18 @@ export default function OrderScreen(props){
                       </div>
                     </div>
                   </li>
-
+                  {
+                    !order.isPaid && (
+                      <li>
+                        { !sdkReady? (<LoadingBox></LoadingBox>):
+                        (<PayPalButton 
+                          amount={order.totalPrice.toFixed()}  
+                          onSuccess={successPaymentHandler}
+                          ></PayPalButton>)
+                        }
+                      </li>
+                    )
+                  }
                 </ul>
               </div>
             </div>

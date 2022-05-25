@@ -15,15 +15,15 @@ export const orderCreateReducer = (state ={} , action) => {
     }
 };
 
-export const orderDetailReducer =(state ={loading:true , order:{}}, action) => {
+export const orderDetailReducer = (state = { loading: true }, action) => {
     switch (action.type) {
-        case ORDER_DETAIL_REQUEST :
-            return {loading : true};
-        case ORDER_DETAIL_SUCCESS :
-            return {loading : false , order: action.payload};
-        case ORDER_DETAIL_FAIL :
-            return {loading : false , error: action.payload}
-        default:
-            return state ;
+      case ORDER_DETAIL_REQUEST:
+        return { loading: true };
+      case ORDER_DETAIL_SUCCESS:
+        return { loading: false, order: action.payload };
+      case ORDER_DETAIL_FAIL:
+        return { loading: false, error: action.payload };
+      default:
+        return state;
     }
-}
+  };
