@@ -100,7 +100,7 @@ export default function ProductScreen(props){
                                             onClick={addToCartHandler}
                                             className="primary block"
                                         >
-                                           À visiter
+                                            Ajouter à la carte  
                                         </button>
                                     </li>
                                 </>

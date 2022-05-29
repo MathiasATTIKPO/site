@@ -43,4 +43,25 @@ orderRouter.get('/:id' ,
     })
 );
 
+orderRouter.put('/:id/pay' , 
+    isAuth , 
+    expressAsyncHandler(async (req, res) => {
+        const order = await Order.findById(req.params.id);
+        if(order){
+            order.isPaid = true;
+            order.paidAt = Date.now();
+            order.paymentResult = { 
+                id: req.body.id ,
+                status: req.body.status , 
+                update_time :req.body.update_time , 
+                email_adress : req.body.email_adress ,
+            };
+            const updateOrder = await order.save();
+            res.send({message : 'Louer Payer' , order : updateOrder});
+        }else{
+            res.status(404).send({message : 'Logement non trouvée'});
+        }
+    })
+)
+
 export default orderRouter;

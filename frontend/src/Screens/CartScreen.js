@@ -71,7 +71,7 @@ export default function CartScreen(props){
                                 onClick={checkoutHandler} 
                                 className="primary block" 
                                 disabled={cartItems.length===0}>
-                                     Confirmer la visite 
+                                     Confirmer la location 
                              </button>
                         </li>
                     </ul>

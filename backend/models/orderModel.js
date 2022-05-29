@@ -19,6 +19,12 @@ const orderSchema = new mongoose.Schema({
         numero: { type:Number , required: true},
     },
     paymentMethod : {type: String, required: true},
+    paymentResult : {
+        id: String ,
+        status:String , 
+        update_time :String , 
+        email_adress :String,
+    },
     itemsPrice: { type: Number , required: true},
     taxPrice: {type: Number, required: true},
     totalPrice: { type: Number, required: true},

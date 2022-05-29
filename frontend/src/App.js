@@ -41,7 +41,7 @@ function App() {
               render={({ history }) => (
                 <SearchBox   history={history}></SearchBox>
               )}
-            ></Route>
+              ></Route>
           </div>
             <div>
                 <Link to="/cart"> CARTES  
