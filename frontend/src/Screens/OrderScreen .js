@@ -79,7 +79,7 @@ export default function OrderScreen(props){
                     <p>
                       <strong>Methode de Paiment :</strong>{ order.paymentMethod } <br/>
                     </p>
-                    {order.isPaid? <MessageBox variant="success"> Louer payer le {order.paidAt}</MessageBox>
+                    {order.isPaid? <MessageBox variant="success"> Louer payer le {order.paidAt.substring(0 ,10)} à {order.paidAt.substring(11 ,19 )}</MessageBox>
                     :<MessageBox variant="danger">Louer non payer</MessageBox>
                     }
                   </div>
