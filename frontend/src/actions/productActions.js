@@ -7,12 +7,20 @@ import {
     PRODUCT_LIST_SUCCESS } from "../constant/productConstante"
 import Axios from "axios";
 
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (
+  pageNumber ='',
+  name = '',
+  category = '',
+  order = '',
+  min = 0,
+  max = 0,
+  rating = 0,
+) => async (dispatch) => {
     dispatch({
         type :PRODUCT_LIST_REQUEST
     });
     try{
-        const { data }= await Axios.get('/api/products');
+        const { data }= await Axios.get(`/api/products?pageNumber=${pageNumber}&name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&order=${order}`);
         dispatch( {type : PRODUCT_LIST_SUCCESS, payload: data });
     }catch(error){
         dispatch( {type:PRODUCT_LIST_FAIL, payload: error.message});
@@ -34,3 +42,5 @@ export const detailsProduct = (productId) => async (dispatch) => {
     });
   }
 };
+
+//export const listProducts = ()

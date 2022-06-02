@@ -38,7 +38,7 @@ const orderSchema = new mongoose.Schema({
     busy :{ type: Boolean, default: false},
 },
 {
-    timestamp: true,
+    timestamps : true,
 });
 
 const Order = mongoose.model('Order' , orderSchema);

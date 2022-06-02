@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter  ,Route,Link
 } from "react-router-dom";
+import AdminRoute from './components/AdminRoute';
 import {useDispatch, useSelector } from 'react-redux';
 import HomeScreen from './Screens/HomeScreen.js';
 import ProductScreen from './Screens/ProductScreen.js';
@@ -14,6 +15,8 @@ import PayementScreen from './Screens/PaymentScreen.js';
 import PlaceOrderScreen from './Screens/PlaceOrderScreen.js';
 import OrderScreen from './Screens/OrderScreen .js';
 import OrderHistoryScreen from './Screens/OrderHistoryScreen.js';
+import ProfileScreen from './Screens/ProfileScreen.js';
+import ProductListScreen from './Screens/ProductListScreen.js';
 
 
 
@@ -57,6 +60,9 @@ function App() {
                   <div className="dropdown">
                     <Link to="#">{userInfo.name} <i className="fa fa-caret-down"></i>{' '}</Link> 
                     <ul className="dropdown-content">
+                    <li>
+                        <Link to="/profile">Profile</Link>
+                      </li>
                       <li>
                         <Link to="/orderHistory"> Historique</Link>
                       </li>
@@ -83,6 +89,8 @@ function App() {
             <Route path='/placeOrder' component={PlaceOrderScreen}></Route>
             <Route path='/order/:id?' component={OrderScreen}></Route>
             <Route path='/orderHistory' component={OrderHistoryScreen}></Route>
+            <Route path='/profile' component={ProfileScreen}></Route>
+            <AdminRoute path="/productlist" component={ProductListScreen} exact></AdminRoute>
 
             <Route path='/' component={HomeScreen} exact></Route>
         </main>
