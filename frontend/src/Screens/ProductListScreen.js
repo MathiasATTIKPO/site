@@ -1,14 +1,32 @@
 import React from 'react'
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import MessageBox from '../components/MessageBox';
 import LoadingBox from '../components/LoadingBox';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
+import { useEffect } from 'react';
+import { createProduct, listProducts } from '../actions/productActions';
+import { PRODUCT_CREATE_RESET } from '../constant/productConstante';
 
 export default function ProductListScreen(props) {
-
+  const { pageNumber = 1 } = useParams();
+  /* */
   const productList = useSelector(state => state.productList);
   const{ loading, error , products , page , pages } = productList;
-  const createHandler =()=> {};
+  /* */
+  const productCreate = useSelector(state => state.productCreate);
+  const{ loading :loadingCreate , error: errorCreate , success: successCreate , product: createdProduct } = productCreate;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (successCreate) {
+      dispatch({ type: PRODUCT_CREATE_RESET });
+      props.history.push(`/productAdmin/${createdProduct._id}/edit`);
+    }
+    dispatch(listProducts(pageNumber));
+  } , [dispatch , pageNumber ,  successCreate , createdProduct , props.history]);
+  
+  const createHandler =()=> {
+    dispatch(createProduct());
+  };
   const deleteHandler =()=> {};
   return (
     <div>
@@ -16,6 +34,8 @@ export default function ProductListScreen(props) {
         <h1> Logement</h1>
         <button type="button" className="primary" onClick={createHandler}>Ajouter logement</button>
       </div>
+      {loadingCreate && <LoadingBox></LoadingBox>}
+      {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
@@ -31,25 +51,27 @@ export default function ProductListScreen(props) {
                 <th>Catégories</th>
                 <th>ACTIONS</th>
               </tr>
+              </thead>
               <tbody>
                 {products.map((product) =>(
                   <tr key={product.id}>
-                    <td>{product.id}</td>
+                    <td>{product._id}</td>
                     <td>{product.name}</td>
+                    <td>{product.prix}</td>
                     <td>{product.category}</td>
                     <td>
                       <button type ="button" className="small" 
                         onClick={() => 
                         props.history.push(
-                          `/product/${product.id}/edit`)
-                          }>Edit
+                          `/productAdmin/${product._id}/edit`)
+                          }>Modifier
                       </button> 
                       <button type="button" className="primary" onClick={() => deleteHandler}>Supprimer</button>
                     </td>
                   </tr>
                 ))}
               </tbody>
-            </thead>
+            
           </table>
           <div className="row center pagination">
             {[...Array(pages).keys()].map((x) => (

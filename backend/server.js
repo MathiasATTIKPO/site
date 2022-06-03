@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import productRouter from './routers/productRouter.js';
 import userRouter from './routers/userRouter.js';
 import orderRouter from './routers/orderRouter.js';
+import uploadRouter from './routers/uploadRouter.js';
 
 const app = express();
 app.use(express.json());
@@ -15,7 +16,7 @@ Mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/SITE',{
     useCreateIndex:true ,
 });
 
- 
+ app.use('/api/upload' , uploadRouter);
  app.use('/api/users' , userRouter);
  app.use('/api/products' , productRouter);
  app.use('/api/orders' , orderRouter);

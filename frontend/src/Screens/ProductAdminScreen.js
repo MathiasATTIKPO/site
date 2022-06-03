@@ -16,9 +16,7 @@ export default function ProductScreen(props){
     useEffect (() =>{
         dispatch(detailsProduct(productId));
     } ,[dispatch, productId]);
-    const addToCartHandler = () => {
-        props.history.push(`/cart/${productId}`);
-      };
+    
     return(
         
     <div>
@@ -28,7 +26,7 @@ export default function ProductScreen(props){
         <MessageBox variant="danger">{error}</MessageBox>
         ) : (
         <div>
-            <Link to="/"> RETOUR  </Link>
+            <Link to="/productList"> RETOUR  </Link>
             <div className="row top">
                 <div className="col-2">
                     <img
@@ -91,26 +89,8 @@ export default function ProductScreen(props){
                                         }
                                     </div>
                                 </div>
-                            </li>
-                            {
-                                
-                                    product.countInStock ==="libre" &&(
-                                        <>
-                                            <li>
-                                                <button
-                                                    onClick={addToCartHandler}
-                                                    className="primary block"
-                                                >
-                                                    Ajouter à la carte  
-                                                </button>
-                                            </li>
-                                        </>
-                                        ) 
-
-                                
-                            }
-                             
-                        </ul>
+                            </li>                          
+                    </ul>
                     </div>
                 </div>
             </div>

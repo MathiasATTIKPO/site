@@ -5,6 +5,7 @@ import AdminRoute from './components/AdminRoute';
 import {useDispatch, useSelector } from 'react-redux';
 import HomeScreen from './Screens/HomeScreen.js';
 import ProductScreen from './Screens/ProductScreen.js';
+import ProductAdminScreen from './Screens/ProductAdminScreen.js';
 import CartScreen from './Screens/CartScreen.js';
 import SearchBox from './components/SearchBox.js';
 import SigninScreen from './Screens/SigninScreen.js';
@@ -17,6 +18,7 @@ import OrderScreen from './Screens/OrderScreen .js';
 import OrderHistoryScreen from './Screens/OrderHistoryScreen.js';
 import ProfileScreen from './Screens/ProfileScreen.js';
 import ProductListScreen from './Screens/ProductListScreen.js';
+import ProductEditScreen from './Screens/ProductEditScreen';
 
 
 
@@ -60,11 +62,27 @@ function App() {
                   <div className="dropdown">
                     <Link to="#">{userInfo.name} <i className="fa fa-caret-down"></i>{' '}</Link> 
                     <ul className="dropdown-content">
-                    <li>
+                      <li>
                         <Link to="/profile">Profile</Link>
                       </li>
                       <li>
                         <Link to="/orderHistory"> Historique</Link>
+                      </li>
+                      
+                      <li>
+                          {userInfo && userInfo.isAdmin && (
+                             <ul>
+                              <li>
+                              <Link to="#admin">
+                                Admin 
+                              </Link>
+                              </li>
+                              <li>
+                                  <Link to="/productlist">Products</Link>
+                              </li>
+                              </ul>
+                          )}
+                          
                       </li>
                       <li>
                         <Link to="#signout" onClick={signoutHandler}> Sign out</Link>
@@ -77,11 +95,13 @@ function App() {
                   )
                 }
                 
+                
             </div>
         </header>
         <main>
             <Route path='/cart/:id?' component={CartScreen}></Route>
             <Route  path='/product/:id' component={ProductScreen}></Route>
+            <Route  path='/productAdmin/:id' component={ProductAdminScreen}></Route>
             <Route path='/signin' component={SigninScreen}></Route>
             <Route path='/shipping' component={ShippingAdresseScreen}></Route>
             <Route path='/payement' component={PayementScreen}></Route>
@@ -91,6 +111,11 @@ function App() {
             <Route path='/orderHistory' component={OrderHistoryScreen}></Route>
             <Route path='/profile' component={ProfileScreen}></Route>
             <AdminRoute path="/productlist" component={ProductListScreen} exact></AdminRoute>
+            <Route
+              path="/productAdmin/:id/edit"
+              component={ProductEditScreen}
+              exact
+          ></Route>
 
             <Route path='/' component={HomeScreen} exact></Route>
         </main>
