@@ -1,6 +1,7 @@
 import express from 'express';
 import  Mongoose  from 'mongoose';
 import dotenv from 'dotenv';
+import path from 'path';
 import productRouter from './routers/productRouter.js';
 import userRouter from './routers/userRouter.js';
 import orderRouter from './routers/orderRouter.js';
@@ -9,8 +10,8 @@ import uploadRouter from './routers/uploadRouter.js';
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}))
- dotenv.config();
-Mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/SITE',{
+dotenv.config();
+Mongoose.connect(process.env.MONGODB_URL || 'mongodb+srv://mathiasattikpo:Mathias1405@site.1ha1b.mongodb.net/SITE',{
     userNewUrlParser: true ,
     useUnifiedTopology:true ,
     useCreateIndex:true ,
@@ -23,6 +24,14 @@ Mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/SITE',{
  app.get('/api/config/paypal', (req, res) => {
     res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
   });
+
+const __dirname = path.resolve();
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+/*
+app.use(express.static(path.join(__dirname, '/frontend/build')));
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
+);*/
  app.get('/',(req , res) =>{
      res.send('Serveur pret');
  });
