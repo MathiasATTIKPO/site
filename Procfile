@@ -1,1 +1,1 @@
-web: node --experimental-modules frontend/App.js  
+web: node --experimental-modules backend/server.js  
