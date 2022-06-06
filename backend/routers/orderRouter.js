@@ -1,36 +1,21 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import Order from "../models/orderModel.js";
-import { isAuth } from "../utils.js";
+import { isAdmin, isAuth } from "../utils.js";
 
 const orderRouter = express.Router();
 
-
-orderRouter.post('/' , 
-    isAuth , 
-    expressAsyncHandler(async (req, res) =>{
-        if(req.body.orderItems.length === 0){
-            res.status(400).send({
-                message:'La liste est vide'
-            });
-        }else{
-            const order = new Order({
-                orderItems : req.body.orderItems,
-                shippingAddress : req.body.shippingAddress,
-                paymentMethod : req.body.paymentMethod,
-                itemsPrice : req.body.itemsPrice,
-                taxPrice : req.body.taxPrice,
-                totalPrice : req.body.totalPrice,
-                shippingPrice : req.body.shippingPrice,
-                user : req.user._id ,
-            });
-            const createdOrder = await order.save();
-            res.status(201).send({
-                message:'New Order created' , order :createdOrder});
-        }
+orderRouter.get('/',
+    isAuth,
+    isAdmin, 
+    expressAsyncHandler(async (req, res) => {
+        const orders = await Order.find().populate(
+            'user',
+            'name'
+          );
+        res.send(orders);
     })
 );
-
 orderRouter.get('/mine', isAuth, expressAsyncHandler(async (req, res)=>{
     const orders = await  Order.find({user: req.user._id});
     res.send(orders);
@@ -68,6 +53,62 @@ orderRouter.put('/:id/pay' ,
             res.status(404).send({message : 'Logement non trouvée'});
         }
     })
-)
+);
+
+orderRouter.post('/' , 
+    isAuth , 
+    expressAsyncHandler(async (req, res) =>{
+        if(req.body.orderItems.length === 0){
+            res.status(400).send({
+                message:'La liste est vide'
+            });
+        }else{
+            const order = new Order({
+                orderItems : req.body.orderItems,
+                shippingAddress : req.body.shippingAddress,
+                paymentMethod : req.body.paymentMethod,
+                itemsPrice : req.body.itemsPrice,
+                taxPrice : req.body.taxPrice,
+                totalPrice : req.body.totalPrice,
+                shippingPrice : req.body.shippingPrice,
+                user : req.user._id ,
+            });
+            const createdOrder = await order.save();
+            res.status(201).send({
+                message:'New Order created' , order :createdOrder});
+        }
+    })
+);
+
+orderRouter.delete('/:id',
+    isAuth,
+    isAdmin,
+    expressAsyncHandler(async (req, res) => {
+        const order = await Order.findById(req.params.id);
+        if(order){
+            const deleteOrder = await order.remove();
+            res.send({message :'Order deleted successfully' , order:deleteOrder});
+        }else{
+            res.status(404).send({message:'order not found'});
+        }
+    })
+);
+
+orderRouter.put('/:id/busy',
+    isAuth,
+    isAdmin,
+    expressAsyncHandler(async (req, res) => {
+        const order = await Order.findById(req.params.id);
+        if(order){
+            order.busy= true;
+            order.busyAt= Date.now();
+
+            const updateOrder = await order.save();
+            res.send({message :'Logement Occuper ' , order :updateOrder});
+        }else{
+            res.status(404).send({message :'Logment non trouvé'});
+        }
+    })
+);
 
 export default orderRouter;

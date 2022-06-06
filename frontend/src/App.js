@@ -19,6 +19,7 @@ import OrderHistoryScreen from './Screens/OrderHistoryScreen.js';
 import ProfileScreen from './Screens/ProfileScreen.js';
 import ProductListScreen from './Screens/ProductListScreen.js';
 import ProductEditScreen from './Screens/ProductEditScreen';
+import OrderListScreen from './Screens/OrderListScreen';
 
 
 
@@ -80,6 +81,9 @@ function App() {
                               <li>
                                   <Link to="/productlist">Products</Link>
                               </li>
+                              <li>
+                                  <Link to="/ordersList">Orders</Link>
+                              </li>
                               </ul>
                           )}
                           
@@ -111,6 +115,7 @@ function App() {
             <Route path='/orderHistory' component={OrderHistoryScreen}></Route>
             <Route path='/profile' component={ProfileScreen}></Route>
             <AdminRoute path="/productlist" component={ProductListScreen} exact></AdminRoute>
+            <AdminRoute path='/ordersList' component={OrderListScreen} exact></AdminRoute>
             <Route
               path="/productAdmin/:id/edit"
               component={ProductEditScreen}

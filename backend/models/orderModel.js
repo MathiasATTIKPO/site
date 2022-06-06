@@ -36,6 +36,7 @@ const orderSchema = new mongoose.Schema({
     isPaid :{ type: Boolean , default: false},
     paidAt :{ type: Date},
     busy :{ type: Boolean, default: false},
+    busyAt :{ type: Date}
 },
 {
     timestamps : true,

@@ -1,10 +1,10 @@
-import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React , { useEffect ,useState } from 'react';
+import Axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux'
-import { detailsProduct } from '../actions/productActions';
+import { detailsProduct, updateProduct } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox'
+import { PRODUCT_UPDATE_RESET } from '../constant/productConstante';
 
 export default function ProductEditScreen(props) {
     const productId = props.match.params.id;
@@ -18,13 +18,16 @@ export default function ProductEditScreen(props) {
     const productDetails = useSelector((state) => state.productDetails);
     const { loading, error, product } = productDetails;
 
+    const productUpdate = useSelector((state) => state.productUpdate);
+    const { loading: updateLoading, error: updateError, success: updateSuccess } = productUpdate;
+
     const dispatch = useDispatch();
     useEffect(() => {
-        /* if (successUpdate) {
+        if (updateSuccess) {
           props.history.push('/productlist');
-        }*/
-        if (!product || product._id !== productId ) {
-          //dispatch({ type: PRODUCT_UPDATE_RESET });
+        }
+        if (!product || product._id !== productId|| updateSuccess ) {
+          dispatch({ type: PRODUCT_UPDATE_RESET });
           dispatch(detailsProduct(productId));
         } else {
           setName(product.name);
@@ -34,12 +37,47 @@ export default function ProductEditScreen(props) {
           setCountInStock(product.countInStock);
           setDescription(product.description);
         }
-      }, [product, dispatch, productId]);
+      },[product, dispatch, productId, updateSuccess, props.history]);
 
     const submitHandler = (e) => {
+        e.preventDefault();
+        dispatch(
+            updateProduct({
+                _id: productId,
+                name,
+                prix,
+                image,
+                category,
+                countInStock,
+                description,
+            })
+        );
 
     };
-    const uploadFileHandler=(e)=>{};
+    const [loadingUpload, setLoadingUpload] = useState(false);
+    const [errorUpload, setErrorUpload] = useState('');
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
+    
+    const uploadFileHandler= async (e)=>{
+        const file = e.target.files[0];
+        const bodyFormData = new FormData();
+        bodyFormData.append('image', file);
+        setLoadingUpload(true);
+        try {
+            const { data } = await Axios.post('/api/uploads', bodyFormData, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+                Authorization: `Bearer ${userInfo.token}`,
+              },
+            });
+            setImage(data);
+            setLoadingUpload(false);
+          } catch (error) {
+            setErrorUpload(error.message);
+            setLoadingUpload(false);
+          }
+    };
 
   return (
     <div>
@@ -47,6 +85,8 @@ export default function ProductEditScreen(props) {
             <div>
                 <h1> Modifier Logment {productId}</h1>
             </div>
+            { updateLoading && <LoadingBox></LoadingBox>}
+            {updateError && <MessageBox variant="danger">{updateError}</MessageBox>}
             {loading ? (<LoadingBox></LoadingBox>
             ) : error ? (<MessageBox variant="danger">{error}</MessageBox>
             ) : (
@@ -89,15 +129,12 @@ export default function ProductEditScreen(props) {
                                 label="Choose Image"
                                 onChange={uploadFileHandler}
                             ></input>
-                            {/*
-                                {loadingUpload && <LoadingBox></LoadingBox>}
+                               {loadingUpload && <LoadingBox></LoadingBox>}
                                 {errorUpload && (
-                                <MessageBox variant="danger">{errorUpload}</MessageBox>
-                                )}
-                            */}              
+                                <MessageBox variant="danger">{errorUpload}</MessageBox>)}     
                         </div>
                         <div>
-                            <label htmlFor="category">Category</label>
+                            <label htmlFor="category">categories</label>
                             <input
                                 id="category"
                                 type="text"
@@ -107,7 +144,7 @@ export default function ProductEditScreen(props) {
                             ></input>
                         </div>
                         <div>
-                            <label htmlFor="countInStock">Count In Stock</label>
+                            <label htmlFor="countInStock">Disponibilité</label>
                             <input
                                 id="countInStock"
                                 type="text"

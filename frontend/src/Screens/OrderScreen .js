@@ -3,10 +3,10 @@ import {PayPalButton} from 'react-paypal-button-v2';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
-import { detailOrder, payOrder } from '../actions/orderActions';
+import { detailOrder, payOrder, updateOrder } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import { ORDER_PAY_RESET } from '../constant/orderConstants';
+import { ORDER_PAY_RESET, ORDER_UPDATE_RESET } from '../constant/orderConstants';
 
 export default function OrderScreen(props){
 
@@ -17,7 +17,12 @@ export default function OrderScreen(props){
     
     const orderPay = useSelector((state) => state.orderPay);
     const  { success: successPay , error: errorPay , loading: loadingPay}  = orderPay;
+    
+    const orderUpdate = useSelector((state) => state.orderUpdate);
+    const { success : successUpdate , error : errorUpdate , loading: loadingUpdate} = orderUpdate; 
     const dispatch = useDispatch();
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo}  = userSignin;
 
     useEffect(() => {
       const addPayPalScript = async () => {
@@ -32,9 +37,10 @@ export default function OrderScreen(props){
         document.body.appendChild(script);
       };
 
-      if(!order || successPay || (order && order._id !== orderId )){
+      if(!order ||successUpdate ||successPay || (order && order._id !== orderId )){
         
         dispatch({type : ORDER_PAY_RESET});
+        dispatch({ type:ORDER_UPDATE_RESET})
         dispatch(detailOrder(orderId));
       } else {
         if (!order.isPaid) {
@@ -45,11 +51,14 @@ export default function OrderScreen(props){
           }
         }
       }
-    }, [dispatch, orderId, sdkReady , order , successPay ]);
+    }, [dispatch, orderId, sdkReady , order , successPay , successUpdate]);
 
     const successPaymentHandler = (payementResult) => {
         dispatch(payOrder(order , payementResult));
     }
+    const deliverHandler = ()=> {
+      dispatch(updateOrder(order._id));
+    };
     return loading ? (
       <LoadingBox></LoadingBox>
     ) : error ? (
@@ -166,6 +175,22 @@ export default function OrderScreen(props){
                         )}
                       </li>
                     )
+                  }
+                  {userInfo.isAdmin && order.isPaid && !order.busy && (
+                    <li>
+                      {loadingUpdate && <LoadingBox></LoadingBox>}
+                      {errorUpdate && (
+                        <MessageBox variant="danger">{errorUpdate}</MessageBox>
+                      )}
+                      <button
+                        type="button"
+                        className="primary block"
+                        onClick={deliverHandler}
+                      >
+                          Occuper
+                      </button>
+                    </li>
+                  )
                   }
                 </ul>
               </div>

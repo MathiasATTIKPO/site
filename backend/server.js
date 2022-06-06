@@ -16,7 +16,7 @@ Mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/SITE',{
     useCreateIndex:true ,
 });
 
- app.use('/api/upload' , uploadRouter);
+ app.use('/api/uploads' , uploadRouter);
  app.use('/api/users' , userRouter);
  app.use('/api/products' , productRouter);
  app.use('/api/orders' , orderRouter);
