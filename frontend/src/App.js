@@ -20,6 +20,8 @@ import ProfileScreen from './Screens/ProfileScreen.js';
 import ProductListScreen from './Screens/ProductListScreen.js';
 import ProductEditScreen from './Screens/ProductEditScreen';
 import OrderListScreen from './Screens/OrderListScreen';
+import UserListScreen from './Screens/UserListScreen';
+import UserEditScreen from './Screens/UserEditScreen';
 
 
 
@@ -67,7 +69,7 @@ function App() {
                         <Link to="/profile">Profile</Link>
                       </li>
                       <li>
-                        <Link to="/orderHistory"> Historique</Link>
+                        <Link to="/orderHistory"> Historiques</Link>
                       </li>
                       
                       <li>
@@ -75,14 +77,17 @@ function App() {
                              <ul>
                               <li>
                               <Link to="#admin">
-                                Admin 
+                                Administrateur 
                               </Link>
                               </li>
                               <li>
-                                  <Link to="/productlist">Products</Link>
+                                  <Link to="/productlist">Logements</Link>
                               </li>
                               <li>
-                                  <Link to="/ordersList">Orders</Link>
+                                  <Link to="/ordersList">Loactions</Link>
+                              </li>
+                              <li>
+                                <Link to="/userList"> Utilisateurs</Link>
                               </li>
                               </ul>
                           )}
@@ -116,6 +121,8 @@ function App() {
             <Route path='/profile' component={ProfileScreen}></Route>
             <AdminRoute path="/productlist" component={ProductListScreen} exact></AdminRoute>
             <AdminRoute path='/ordersList' component={OrderListScreen} exact></AdminRoute>
+            <AdminRoute path='/userList' component={UserListScreen} exact></AdminRoute>
+            <AdminRoute path="/user/:id/edit" component={UserEditScreen}></AdminRoute>
             <Route
               path="/productAdmin/:id/edit"
               component={ProductEditScreen}
