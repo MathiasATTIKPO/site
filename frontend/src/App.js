@@ -7,7 +7,7 @@ import HomeScreen from './Screens/HomeScreen.js';
 import ProductScreen from './Screens/ProductScreen.js';
 import ProductAdminScreen from './Screens/ProductAdminScreen.js';
 import CartScreen from './Screens/CartScreen.js';
-import SearchBox from './components/SearchBox.js';
+//import SearchBox from './components/SearchBox.js';
 import SigninScreen from './Screens/SigninScreen.js';
 import { signout } from './actions/userActions.js';
 import RegisterScreen from './Screens/RegisterScreen.js';
@@ -45,13 +45,6 @@ function App() {
             <div>
                 <Link className="brand" to="/"> LOCA LOLI  </Link>
             </div>
-            <div>
-            <Route
-              render={({ history }) => (
-                <SearchBox   history={history}></SearchBox>
-              )}
-              ></Route>
-          </div>
             <div>
                 <Link to="/cart"> CARTES  
                 {cartItems.length > 0 && (
@@ -94,7 +87,7 @@ function App() {
                           
                       </li>
                       <li>
-                        <Link to="#signout" onClick={signoutHandler}> Sign out</Link>
+                        <Link to="#signout" onClick={signoutHandler}>Se deconnecter</Link>
                       </li>
                     </ul>
                   </div>
