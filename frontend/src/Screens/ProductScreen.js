@@ -93,8 +93,7 @@ export default function ProductScreen(props){
                                 </div>
                             </li>
                             {
-                                
-                                    product.countInStock ==="libre" &&(
+                                product.countInStock ==="libre" &&(
                                         <>
                                             <li>
                                                 <button
@@ -104,10 +103,8 @@ export default function ProductScreen(props){
                                                     Ajouter à la carte  
                                                 </button>
                                             </li>
-                                        </>
-                                        ) 
-
-                                
+                                 </>
+                                )     
                             }
                              
                         </ul>
