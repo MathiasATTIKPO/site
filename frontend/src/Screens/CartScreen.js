@@ -28,7 +28,7 @@ export default function CartScreen(props){
             <div className="col-2">
                 <h1> Site à visiter</h1>
                 {cartItems.length ===0? <MessageBox>
-                    La Liste est vite . <Link to="/"> Accueil</Link>
+                    La Liste est vide.  <Link to="/"> Accueil</Link>
                 </MessageBox>
                  :(
                     <ul>

@@ -62,7 +62,7 @@ export default function ProfileScreen() {
                         </MessageBox>
                         )}
                          <div>
-                            <label htmlFor="name">Name</label>
+                            <label htmlFor="name">Nom</label>
                             <input
                                 type="text"
                                 id="name"
@@ -72,7 +72,7 @@ export default function ProfileScreen() {
                             ></input>
                         </div>
                         <div>
-                            <label htmlFor="email">Email address</label>
+                            <label htmlFor="email">Email</label>
                             <input
                                 type="email"
                                 id="email"
@@ -82,20 +82,20 @@ export default function ProfileScreen() {
                             ></input>
                         </div>
                         <div>
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">Mots de Passes</label>
                             <input
                                 type="password"
                                 id="password"
-                                placeholder="Enter password"
+                                placeholder="Entrez Mots de Passes "
                                 onChange={(e) => setPassword(e.target.value)}
                             ></input>
                         </div>
                         <div>
-                            <label htmlFor="confirmPassword">confirm Password</label>
+                            <label htmlFor="confirmPassword">Confirmé le  Mots de Passes</label>
                             <input
                                 type="password"
                                 id="confirmPassword "
-                                placeholder="confirm Password"
+                                placeholder="Confirmé le  Mots de Passes"
                                 onChange={(e) => setConfirmPassword(e.target.value)}                              
                             ></input>
                         </div>

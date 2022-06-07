@@ -40,46 +40,46 @@ export default function RegisterScreen(props) {
     <div>
       <form className="form" onSubmit={submitHandler}>
         <div>
-          <h1>Create a new account</h1>
+          <h1>Creer un nouveau compte</h1>
         </div>
         {loading && <LoadingBox></LoadingBox>}
         {error && <MessageBox variant="danger">{error}</MessageBox>}
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Nom</label>
           <input
             type="text"
             id="name"
-            placeholder="Enter name"
+            placeholder="Entrez votre "
             required
             onChange={(e) => setName(e.target.value)}
           ></input>
         </div>
         <div>
-          <label htmlFor="email">Email address</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
-            placeholder="Enter email"
+            placeholder="Entrez votre  email"
             required
             onChange={(e) => setEmail(e.target.value)}
           ></input>
         </div>
         <div>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Mots de Passes</label>
           <input
             type="password"
             id="password"
-            placeholder="Enter password"
+            placeholder="Entrez le Mots de Passes"
             required
             onChange={(e) => setPassword(e.target.value)}
           ></input>
         </div>
         <div>
-          <label htmlFor="confirmPassword">confirm Password</label>
+          <label htmlFor="confirmPassword">Confirmez le Mots de Passes</label>
           <input
             type="password"
             id="confirmPassword "
-            placeholder="confirm Password"
+            placeholder="Confirmez le Mots de Passes"
             required
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></input>
@@ -87,15 +87,15 @@ export default function RegisterScreen(props) {
         <div>
           <label />
           <button className="primary" type="submit">
-            Register
+              S'inscrire
           </button>
         </div>
         <div>
           <label />
           <div>
-            Already have an account?{' '}
+            Vous avez déja un compte?{' '}
             <Link to={`/signin?redirect=${redirect}`}>
-              sign in 
+              Se connecter
             </Link>
           </div>
         </div>
