@@ -23,6 +23,7 @@ import OrderListScreen from './Screens/OrderListScreen';
 import UserListScreen from './Screens/UserListScreen';
 import UserEditScreen from './Screens/UserEditScreen';
 import SellerRoute from './components/SellerRoute';
+import SellerScreen from './Screens/SellerScreen';
 
 
 
@@ -30,7 +31,7 @@ import SellerRoute from './components/SellerRoute';
 function App() {
 
     const cart = useSelector(state => state.cart);
-    const {cartItems} = cart ;
+    const { cartItems } = cart ;
     const userSignin = useSelector((state) => state.userSignin);
     //const userRegister = useSelector((state) => state.userRegister);
     const { userInfo } = userSignin;
@@ -119,6 +120,7 @@ function App() {
             </div>
         </header>
         <main>
+            <Route path="/seller/:id" component={SellerScreen}></Route>
             <Route path='/cart/:id?' component={CartScreen}></Route>
             <Route  path='/product/:id' component={ProductScreen}></Route>
             <Route  path='/productAdmin/:id' component={ProductAdminScreen}></Route>

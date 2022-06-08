@@ -27,6 +27,7 @@ userRouter.post('/signin' ,
             email: user.email,
             name: user.name,
             isAdmin: user.isAdmin,
+            isSeller : user.isSeller,
             token: generateToken(user),
           });
           return;
