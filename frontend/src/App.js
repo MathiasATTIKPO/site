@@ -22,6 +22,7 @@ import ProductEditScreen from './Screens/ProductEditScreen';
 import OrderListScreen from './Screens/OrderListScreen';
 import UserListScreen from './Screens/UserListScreen';
 import UserEditScreen from './Screens/UserEditScreen';
+import SellerRoute from './components/SellerRoute';
 
 
 
@@ -86,6 +87,23 @@ function App() {
                           )}
                           
                       </li>
+                            {userInfo && userInfo.isSeller && (
+                              <ul>
+                              <li>
+                                <Link to="#admin">
+                                    Proprietaire
+                                </Link>
+                              </li>
+                              <li>
+                                <Link to="/productlist/seller">Logements</Link>
+                              </li>
+                              <li>
+                                <Link to="/orderlist/seller">Locations</Link>
+                              </li>
+                              </ul>
+                            )}
+                      <li>
+                      </li>
                       <li>
                         <Link to="#signout" onClick={signoutHandler}>Se deconnecter</Link>
                       </li>
@@ -116,15 +134,18 @@ function App() {
             <AdminRoute path='/ordersList' component={OrderListScreen} exact></AdminRoute>
             <AdminRoute path='/userList' component={UserListScreen} exact></AdminRoute>
             <AdminRoute path="/user/:id/edit" component={UserEditScreen}></AdminRoute>
+
+            <SellerRoute path='/productlist/seller' component={ProductListScreen}></SellerRoute>
             <Route
               path="/productAdmin/:id/edit"
               component={ProductEditScreen}
-              exact
-          ></Route>
+              exact></Route>
 
             <Route path='/' component={HomeScreen} exact></Route>
         </main>
         <footer className="row center">
+          {userInfo && !userInfo.isAdmin /* && <ChatBox userInfo={userInfo} />*/
+          }
            <h6> TOUTS LES DROITS SONT RESERVERS</h6> 
         </footer>
     </div>

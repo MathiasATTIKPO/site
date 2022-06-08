@@ -9,6 +9,11 @@ import { PRODUCT_CREATE_RESET, PRODUCT_DELETE_RESET } from '../constant/productC
 
 export default function ProductListScreen(props) {
   const { pageNumber = 1 } = useParams();
+
+  const sellerMode = props.match.path.indexOf('/seller') >= 0;
+  /* */
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
   /* */
   const productList = useSelector(state => state.productList);
   const{ loading, error , products , page , pages } = productList;
@@ -27,8 +32,9 @@ export default function ProductListScreen(props) {
     if (successDelete) {
       dispatch({ type: PRODUCT_DELETE_RESET });
     }
-    dispatch(listProducts(pageNumber));
-  } , [dispatch , pageNumber ,  successCreate , createdProduct , props.history , successDelete ]);
+    dispatch(listProducts({ seller: sellerMode ? userInfo._id : '',pageNumber})
+    );
+  } , [dispatch , pageNumber ,  sellerMode , successCreate , userInfo, createdProduct , props.history , successDelete ]);
   
   const createHandler =()=> {
     dispatch(createProduct());

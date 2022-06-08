@@ -17,19 +17,31 @@ productRouter.get(
     '/seed' , 
     expressAsyncHandler(async (req, res) => {
        // await Product.remove({})
-        const createProducts = await Product.insertMany(data.products);
-        res.send({createProducts});
+       const seller = await User.findOne({ isSeller: true });
+       if(seller){
+           const products = data.products.map((product) => ({
+               ...product,
+               seller: seller._id,
+           }));
+           const createProducts = await Product.insertMany(data.products);
+           res.send({createProducts});
+       }else{
+           res.status(500).send({message:'Aucun proprietaire trouvé , excuter /api/users/seed'});
+       }   
     })
 );
 
 productRouter.get('/:id' ,
     expressAsyncHandler(async (req, res) => {
-        const products = await Product.findById(req.params.id);
+        const products = await Product.findById(req.params.id).populate(
+            'seller',
+            'seller.name seller.logo seller.rating seller.numReviews'
+          );
        if(products){
            res.send(products);
        }
        else{
-            res.status(404).send({message: 'logement  not found'});
+            res.status(404).send({message: 'Aucun logement trouvé'});
        }
     })
 )
@@ -89,4 +101,6 @@ productRouter.delete('/:id' ,
         }
     })
 );
+
+
 export default productRouter ;
