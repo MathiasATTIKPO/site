@@ -106,7 +106,7 @@ function App() {
                       <li>
                       </li>
                       <li>
-                        <Link to="#signout" onClick={signoutHandler}>Se deconnecter</Link>
+                        <Link to="/" onClick={signoutHandler}>Se deconnecter</Link>
                       </li>
                     </ul>
                   </div>
