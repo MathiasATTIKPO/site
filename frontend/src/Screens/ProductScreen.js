@@ -31,11 +31,13 @@ export default function ProductScreen(props){
             <Link to="/"> RETOUR  </Link>
             <div className="row top">
                 <div className="col-2">
+                    <a href={product.image}>
                     <img
                         src={product.image}
                         alt={product.name}
                         className="large"
                     ></img>
+                    </a>
                 </div>
                 <div className="col-1" >
                     <ul>
@@ -64,6 +66,9 @@ export default function ProductScreen(props){
                                 alt={product.name}
                                 className="small"
                             ></img>
+                        </li>
+                        <li>
+                            <a href="/image/"> Voir Plus</a>
                         </li>
                     </ul>
                 </div>

@@ -37,6 +37,7 @@ export default function CartScreen(props){
                                 <li key={item.product} >
                                     <div className="row">
                                         <div>
+                        
                                             <img src={item.image}
                                                 alt={item.name}
                                                 className="small"

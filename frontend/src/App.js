@@ -24,6 +24,7 @@ import UserListScreen from './Screens/UserListScreen';
 import UserEditScreen from './Screens/UserEditScreen';
 import SellerRoute from './components/SellerRoute';
 import SellerScreen from './Screens/SellerScreen';
+import ImageScreen from './Screens/ImageScreen';
 
 
 
@@ -132,12 +133,14 @@ function App() {
             <Route path='/order/:id?' component={OrderScreen}></Route>
             <Route path='/orderHistory' component={OrderHistoryScreen}></Route>
             <Route path='/profile' component={ProfileScreen}></Route>
+            <Route path='/image' component={ImageScreen}></Route>
             <AdminRoute path="/productlist" component={ProductListScreen} exact></AdminRoute>
             <AdminRoute path='/ordersList' component={OrderListScreen} exact></AdminRoute>
             <AdminRoute path='/userList' component={UserListScreen} exact></AdminRoute>
             <AdminRoute path="/user/:id/edit" component={UserEditScreen}></AdminRoute>
 
             <SellerRoute path='/productlist/seller' component={ProductListScreen}></SellerRoute>
+            <SellerRoute path='/orderlist/seller' component={OrderListScreen}></SellerRoute>
             <Route
               path="/productAdmin/:id/edit"
               component={ProductEditScreen}
