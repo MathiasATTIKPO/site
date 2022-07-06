@@ -38,8 +38,10 @@ userRouter.post('/signin' ,
 )
 
 userRouter.post('/register' , expressAsyncHandler(async(req, res) => {
-  const user = new User({name: req.body.name , email: req.body.email ,
-  password: bcrypt.hashSync(req.body.password , 8) ,
+  const user = new User({
+    name: req.body.name , 
+    email: req.body.email ,
+    password: bcrypt.hashSync(req.body.password , 8) ,
   });
   const createdUser = await user.save();
   res.send({
@@ -73,21 +75,30 @@ userRouter.get(
   })
 );
 
-userRouter.put('/profile',
+userRouter.put(
+  '/profile',
   isAuth,
-  expressAsyncHandler(async (req, res) =>{
+  expressAsyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id);
     if (user) {
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
+      if (user.isSeller) {
+        user.seller.name = req.body.sellerName || user.seller.name;
+        user.seller.photo = req.body.sellerphoto || user.seller.photo;
+        user.seller.description =
+          req.body.sellerDescription || user.seller.description;
+      }
       if (req.body.password) {
         user.password = bcrypt.hashSync(req.body.password, 8);
       }
       const updatedUser = await user.save();
       res.send({
-        id: updatedUser._id,
+        _id: updatedUser._id,
         name: updatedUser.name,
         email: updatedUser.email,
+        isAdmin: updatedUser.isAdmin,
+        isSeller: user.isSeller,
         token: generateToken(updatedUser),
       });
     }

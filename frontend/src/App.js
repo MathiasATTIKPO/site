@@ -121,7 +121,7 @@ function App() {
             </div>
         </header>
         <main>
-            <Route path="/seller/:id" component={SellerScreen}></Route>
+            <Route path='/seller/:id' component={SellerScreen}></Route>
             <Route path='/cart/:id?' component={CartScreen}></Route>
             <Route  path='/product/:id' component={ProductScreen}></Route>
             <Route  path='/productAdmin/:id' component={ProductAdminScreen}></Route>

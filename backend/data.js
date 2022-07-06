@@ -10,11 +10,11 @@ const data ={
           isSeller: true,
           seller: {
             name: 'ATTIKPO',
-            logo: '/images/b4.png',
+            photo: '/images/b4.png',
             description: 'best seller',
             rating: 4.5,
             numReviews: 120,
-      },
+            },
         },
         {
           name: 'mathias',

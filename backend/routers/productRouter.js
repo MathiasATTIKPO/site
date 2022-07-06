@@ -9,7 +9,11 @@ const  productRouter = express.Router();
 
 productRouter.get('/',
     expressAsyncHandler(async (req, res) => {
-        const products =  await Product.find({});
+        const seller = req.query.seller || '';
+        const sellerFilter = seller ? { seller } : {};
+        const products =  await Product.find({
+            ...sellerFilter,
+        }).populate('seller', 'seller.name seller.photo');
         res.send(products);
     })
 );
@@ -25,9 +29,9 @@ productRouter.get(
            }));
            const createProducts = await Product.insertMany(data.products);
            res.send({createProducts});
-       }else{
+      }else{
            res.status(500).send({message:'Aucun proprietaire trouvé , excuter /api/users/seed'});
-       }   
+       } 
     })
 );
 
@@ -35,7 +39,7 @@ productRouter.get('/:id' ,
     expressAsyncHandler(async (req, res) => {
         const products = await Product.findById(req.params.id).populate(
             'seller',
-            'seller.name seller.logo seller.rating seller.numReviews'
+            'seller.name seller.photo seller.rating seller.numReviews'
           );
        if(products){
            res.send(products);
@@ -52,6 +56,7 @@ productRouter.post('/',
     expressAsyncHandler(async (req, res) => {
         const product = new Product({
           name: 'sample name ' + Date.now(),
+          seller: req.user._id,
           image: '/images/p1.jpg',
           prix: 0,
           category: 'sample category',

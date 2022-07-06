@@ -6,7 +6,7 @@ export default function Product(props) {
   const { product } = props;
   return (
     <div key={product._id} className="offre">
-       <Link to={`/product/${product._id}`}>
+      <Link to={`/product/${product._id}`}>
         <img className="medium" src={product.image} alt={product.name} />
       </Link>
       <div className="offre-body">
@@ -17,8 +17,13 @@ export default function Product(props) {
           rating={product.rating}
           numReviews={product.numReviews}
         ></Rating>
-         <div className="row">
-          <div className="prix">XOF {product.prix}</div>
+        <div className="row">
+          <div className="price">XOF {product.prix}</div>
+          <div>
+            <Link to={`/seller/${product.seller._id}`}>
+              {product.seller.seller.name}
+            </Link>
+          </div>
         </div>
       </div>
     </div>

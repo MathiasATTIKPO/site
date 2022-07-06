@@ -10,7 +10,7 @@ import { listProducts } from '../actions/productActions';
      const {loading , error , products}= productList;
      const dispatch = useDispatch();
       useEffect(() =>{ 
-         dispatch(listProducts());
+         dispatch(listProducts({}));
       }, [dispatch]);
      return(
        <div>
@@ -19,11 +19,14 @@ import { listProducts } from '../actions/productActions';
          ): error ? (
            <MessageBox  variant="danger">{error}</MessageBox>
          ) :(
+          <>
+          {products.length === 0 && <MessageBox>No Product Found</MessageBox>}
           <div className="row center">
-          {products.map((product)=>(
-              < Product key= {product._id} product={product}></Product>
+            {products.map((product) => (
+              <Product key={product._id} product={product}></Product>
             ))}
-        </div>
+          </div>
+        </>
          )}
        </div>
     );

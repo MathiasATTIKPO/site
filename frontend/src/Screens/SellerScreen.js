@@ -38,7 +38,7 @@ export default function SellerScreen(props) {
               <div className="p-1">
                 <img
                   className="small"
-                  src={user.seller.logo}
+                  src={user.seller.photo}
                   alt={user.seller.name}
                 ></img>
               </div>
@@ -54,7 +54,7 @@ export default function SellerScreen(props) {
             ></Rating>
           </li>
           <li>
-            <a href={`mailto:${user.email}`}>Contact Seller</a>
+            <a href={`mailto:${user.email}`}>Contacter Le proprietaire</a>
           </li>
           <li>{user.seller.description}</li>
         </ul>

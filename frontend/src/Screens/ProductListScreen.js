@@ -34,7 +34,7 @@ export default function ProductListScreen(props) {
     }
     dispatch(listProducts({ seller: sellerMode ? userInfo._id : '',pageNumber})
     );
-  } , [dispatch , pageNumber ,  sellerMode , successCreate , userInfo, createdProduct , props.history , successDelete ]);
+  } , [dispatch , pageNumber ,  sellerMode , successCreate , userInfo._id, createdProduct , props.history , successDelete ]);
   
   const createHandler =()=> {
     dispatch(createProduct());
