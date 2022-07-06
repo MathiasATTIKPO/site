@@ -140,6 +140,10 @@ img.medium {
   max-width: 29rem;
   width: 100%;
 }
+img.medium2 {
+  max-width: 129rem;
+  max-height: 30rem;
+}
 img.large {
   width: 100%;
   max-width: 70rem;
