@@ -25,6 +25,7 @@ import UserEditScreen from './Screens/UserEditScreen';
 import SellerRoute from './components/SellerRoute';
 import SellerScreen from './Screens/SellerScreen';
 import ImageScreen from './Screens/ImageScreen';
+import SearchBox from './components/SearchBox';
 
 
 
@@ -48,6 +49,13 @@ function App() {
             <div>
                 <Link className="brand" to="/"> LOCA LOLI  </Link>
             </div>
+            <div>
+            <Route
+              render={({ history }) => (
+                <SearchBox history={history}></SearchBox>
+              )}
+            ></Route>
+          </div>
             <div>
                 <Link to="/cart"> CARTES  
                 {cartItems.length > 0 && (
