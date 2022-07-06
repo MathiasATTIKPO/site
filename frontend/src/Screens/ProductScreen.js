@@ -76,7 +76,7 @@ export default function ProductScreen(props){
                     <div className="offre offre-body">
                         <ul>
                             <li>
-                                Seller{' '}
+                                Agence{' '}
                                 <h2>
                                     <Link to={`/seller/${product.seller._id}`}>
                                         {product.seller.seller.name}

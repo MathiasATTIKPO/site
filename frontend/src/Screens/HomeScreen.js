@@ -26,7 +26,7 @@ import { Link } from 'react-router-dom';
   }, [dispatch]);
      return(
        <div>
-        <h2>Meilleur Proprietaire</h2>
+        <h2>Nos Agences</h2>
       {loadingSellers ? (
         <LoadingBox></LoadingBox>
       ) : errorSellers ? (
