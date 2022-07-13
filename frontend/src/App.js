@@ -24,6 +24,7 @@ import ProductEditScreen from './Screens/productScreen/ProductEditScreen';
 import CartScreen from './Screens/CartScreen';
 import SellerScreen from './Screens/SellerScreen';
 import HomeScreen from './Screens/HomeScreen';
+import ProductScreen from './Screens/productScreen/ProductScreen';
 
 
 
@@ -129,7 +130,7 @@ function App() {
         <main>
             <Route path='/seller/:id' component={SellerScreen}></Route>
             <Route path='/cart/:id?' component={CartScreen}></Route>
-            <Route  path='/product/:id' component={ProductEditScreen}></Route>
+            <Route  path='/product/:id' component={ProductScreen}></Route>
             <Route  path='/productAdmin/:id' component={ProductAdminScreen}></Route>
             <Route path='/signin' component={SigninScreen}></Route>
             <Route path='/shipping' component={ShippingAdresseScreen}></Route>
