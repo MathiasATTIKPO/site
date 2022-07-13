@@ -53,10 +53,10 @@ export const detailsProduct = (productId) => async (dispatch) => {
   }
 };
 
-export const createProduct = () => async (dispatch , getState) =>{
-  dispatch({type:PRODUCT_CREATE_REQUEST});
+export const createProduct = () => async (dispatch, getState) => {
+  dispatch({ type: PRODUCT_CREATE_REQUEST });
   const {
-    userSignin : { userInfo } ,
+    userSignin: { userInfo },
   } = getState();
   try {
     const { data } = await Axios.post(
@@ -70,13 +70,12 @@ export const createProduct = () => async (dispatch , getState) =>{
       type: PRODUCT_CREATE_SUCCESS,
       payload: data.product,
     });
-    
   } catch (error) {
-    const  message = error.response && error.response.data.message
-    ? error.response.data.message
-    : error.message ;
-    dispatch({ type:PRODUCT_CREATE_FAIL, payload : message})
-    
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: PRODUCT_CREATE_FAIL, payload: message });
   }
 };
 

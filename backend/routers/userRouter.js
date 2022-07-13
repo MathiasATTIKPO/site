@@ -47,7 +47,8 @@ userRouter.post('/signin' ,
     })
 )
 
-userRouter.post('/register' , expressAsyncHandler(async(req, res) => {
+userRouter.post('/register' , 
+expressAsyncHandler(async(req, res) => {
   const user = new User({
     name: req.body.name , 
     email: req.body.email ,
@@ -59,6 +60,7 @@ userRouter.post('/register' , expressAsyncHandler(async(req, res) => {
     email: createdUser.email,
     name: createdUser.name,
     isAdmin: createdUser.isAdmin,
+    isSeller: user.isSeller,
     token: generateToken(createdUser),
   })
 }));

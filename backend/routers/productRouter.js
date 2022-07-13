@@ -2,7 +2,7 @@ import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import data from '../data.js';
 import Product from '../models/productModel.js';
-import { isAdmin, isAuth , isSeller , isSellerOrAdmin} from '../utils.js';
+import { isAdmin, isAuth  , isSellerOrAdmin} from '../utils.js';
 
 
 const  productRouter = express.Router();
@@ -21,7 +21,7 @@ productRouter.get(
     '/seed' , 
     expressAsyncHandler(async (req, res) => {
        // await Product.remove({})
-       const seller = await User.findOne({ isSeller: true });
+      const seller = await User.findOne({ isSeller: true });
        if(seller){
            const products = data.products.map((product) => ({
                ...product,
@@ -29,9 +29,9 @@ productRouter.get(
            }));
            const createProducts = await Product.insertMany(data.products);
            res.send({createProducts});
-      }else{
+        }else{
            res.status(500).send({message:'Aucun proprietaire trouvé , excuter /api/users/seed'});
-       } 
+        } 
     })
 );
 
@@ -73,7 +73,7 @@ productRouter.post('/',
 productRouter.put(
     '/:id',
     isAuth,
-    isAdmin,
+    isSellerOrAdmin,
     expressAsyncHandler(async (req, res) => {
       const productId = req.params.id;
       const product = await Product.findById(productId);
@@ -94,7 +94,7 @@ productRouter.put(
 
 productRouter.delete('/:id' , 
     isAuth, 
-    isAdmin , 
+    isSellerOrAdmin , 
     expressAsyncHandler(async (req, res)=>{
         const productId = req.params.id ;
         const  product = await Product.findById(productId);
