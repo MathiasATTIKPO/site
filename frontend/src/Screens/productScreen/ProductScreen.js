@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import Rating from '../components/Rating';
 import { useSelector , useDispatch } from 'react-redux';
 import {Link }from 'react-router-dom';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import { detailsProduct } from '../actions/productActions';
+import { detailsProduct } from '../../actions/productActions';
+import LoadingBox from '../../components/LoadingBox';
+import MessageBox from '../../components/MessageBox';
+import Rating from '../../components/Rating';
+;
 
 
 export default function ProductScreen(props){
@@ -16,7 +17,9 @@ export default function ProductScreen(props){
     useEffect (() =>{
         dispatch(detailsProduct(productId));
     } ,[dispatch, productId]);
-    
+    const addToCartHandler = () => {
+        props.history.push(`/cart/${productId}`);
+      };
     return(
         
     <div>
@@ -26,14 +29,16 @@ export default function ProductScreen(props){
         <MessageBox variant="danger">{error}</MessageBox>
         ) : (
         <div>
-            <Link to="/productList"> RETOUR  </Link>
+            <Link to="/"> RETOUR  </Link>
             <div className="row top">
                 <div className="col-2">
+                    <a href={product.image}>
                     <img
                         src={product.image}
                         alt={product.name}
                         className="large"
                     ></img>
+                    </a>
                 </div>
                 <div className="col-1" >
                     <ul>
@@ -63,11 +68,26 @@ export default function ProductScreen(props){
                                 className="small"
                             ></img>
                         </li>
+                        <li>
+                            <a href="/image/"> Voir Plus</a>
+                        </li>
                     </ul>
                 </div>
                 <div className="col-1">
                     <div className="offre offre-body">
                         <ul>
+                            <li>
+                                Agence{' '}
+                                <h2>
+                                    <Link to={`/seller/${product.seller._id}`}>
+                                        {product.seller.seller.name}
+                                    </Link>
+                                </h2>
+                                <Rating
+                                    rating={product.seller.seller.rating}
+                                    numReviews={product.seller.seller.numReviews}
+                                ></Rating>
+                            </li>
                             <li>
                                 <div className="row">
                                     <div>
@@ -89,8 +109,23 @@ export default function ProductScreen(props){
                                         }
                                     </div>
                                 </div>
-                            </li>                          
-                    </ul>
+                            </li>
+                            {
+                                product.countInStock ==="libre" &&(
+                                        <>
+                                            <li>
+                                                <button
+                                                    onClick={addToCartHandler}
+                                                    className="primary block"
+                                                >
+                                                    Ajouter à la carte  
+                                                </button>
+                                            </li>
+                                 </>
+                                )     
+                            }
+                             
+                        </ul>
                     </div>
                 </div>
             </div>

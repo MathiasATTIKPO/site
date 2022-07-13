@@ -3,29 +3,27 @@ import { BrowserRouter  ,Route,Link
 } from "react-router-dom";
 import AdminRoute from './components/AdminRoute';
 import {useDispatch, useSelector } from 'react-redux';
-import HomeScreen from './Screens/HomeScreen.js';
-import ProductScreen from './Screens/ProductScreen.js';
-import ProductAdminScreen from './Screens/ProductAdminScreen.js';
-import CartScreen from './Screens/CartScreen.js';
-//import SearchBox from './components/SearchBox.js';
-import SigninScreen from './Screens/SigninScreen.js';
-import { signout } from './actions/userActions.js';
-import RegisterScreen from './Screens/RegisterScreen.js';
-import ShippingAdresseScreen from './Screens/ShippingAdresseScreen.js';
-import PayementScreen from './Screens/PaymentScreen.js';
-import PlaceOrderScreen from './Screens/PlaceOrderScreen.js';
-import OrderScreen from './Screens/OrderScreen .js';
-import OrderHistoryScreen from './Screens/OrderHistoryScreen.js';
-import ProfileScreen from './Screens/ProfileScreen.js';
-import ProductListScreen from './Screens/ProductListScreen.js';
-import ProductEditScreen from './Screens/ProductEditScreen';
-import OrderListScreen from './Screens/OrderListScreen';
-import UserListScreen from './Screens/UserListScreen';
-import UserEditScreen from './Screens/UserEditScreen';
-import SellerRoute from './components/SellerRoute';
-import SellerScreen from './Screens/SellerScreen';
-import ImageScreen from './Screens/ImageScreen';
+import { signout } from './actions/userActions';
 import SearchBox from './components/SearchBox';
+import SellerRoute from './components/SellerRoute';
+import OrderListScreen from './Screens/orderScreen/OrderListScreen';
+import ProductListScreen from './Screens/productScreen/ProductListScreen';
+import UserEditScreen from './Screens/UserScreen/UserEditScreen';
+import UserListScreen from './Screens/UserScreen/UserListScreen';
+import ImageScreen from './Screens/ImageScreen';
+import ProfileScreen from './Screens/UserScreen/ProfileScreen';
+import OrderHistoryScreen from './Screens/orderScreen/OrderHistoryScreen';
+import OrderScreen from './Screens/orderScreen/OrderScreen ';
+import PlaceOrderScreen from './Screens/orderScreen/PlaceOrderScreen';
+import RegisterScreen from './Screens/UserScreen/RegisterScreen';
+import PayementScreen from './Screens/orderScreen/PaymentScreen';
+import ShippingAdresseScreen from './Screens/productScreen/ShippingAdresseScreen';
+import SigninScreen from './Screens/UserScreen/SigninScreen';
+import ProductAdminScreen from './Screens/productScreen/ProductAdminScreen';
+import ProductEditScreen from './Screens/productScreen/ProductEditScreen';
+import CartScreen from './Screens/CartScreen';
+import SellerScreen from './Screens/SellerScreen';
+import HomeScreen from './Screens/HomeScreen';
 
 
 
@@ -131,7 +129,7 @@ function App() {
         <main>
             <Route path='/seller/:id' component={SellerScreen}></Route>
             <Route path='/cart/:id?' component={CartScreen}></Route>
-            <Route  path='/product/:id' component={ProductScreen}></Route>
+            <Route  path='/product/:id' component={ProductEditScreen}></Route>
             <Route  path='/productAdmin/:id' component={ProductAdminScreen}></Route>
             <Route path='/signin' component={SigninScreen}></Route>
             <Route path='/shipping' component={ShippingAdresseScreen}></Route>

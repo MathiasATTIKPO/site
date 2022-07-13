@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { createOrder } from '../actions/orderActions';
-import CheckOutStep from '../components/CheckOutStep';
-import { ORDER_CREATE_RESET } from '../constant/orderConstants';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
+import { createOrder } from '../../actions/orderActions';
+import CheckOutStep from '../../components/CheckOutStep';
+import LoadingBox from '../../components/LoadingBox';
+import MessageBox from '../../components/MessageBox';
+import { ORDER_CREATE_RESET } from '../../constant/orderConstants';
+
+
 export default function PlaceOrderScreen(props){
     const cart = useSelector((state) => state.cart);
     if(!cart.paymentMethod){

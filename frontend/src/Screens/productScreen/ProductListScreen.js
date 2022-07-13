@@ -1,11 +1,12 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux';
-import MessageBox from '../components/MessageBox';
-import LoadingBox from '../components/LoadingBox';
 import {Link, useParams} from 'react-router-dom';
 import { useEffect } from 'react';
-import { createProduct, deleteProduct, listProducts } from '../actions/productActions';
-import { PRODUCT_CREATE_RESET, PRODUCT_DELETE_RESET } from '../constant/productConstante';
+import { PRODUCT_CREATE_RESET, PRODUCT_DELETE_RESET } from '../../constant/productConstante';
+import { createProduct, deleteProduct, listProducts } from '../../actions/productActions';
+import LoadingBox from '../../components/LoadingBox';
+import MessageBox from '../../components/MessageBox';
+
 
 export default function ProductListScreen(props) {
   const { pageNumber = 1 } = useParams();
