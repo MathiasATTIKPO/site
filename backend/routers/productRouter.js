@@ -52,8 +52,6 @@ productRouter.get('/:id' ,
 
 productRouter.post('/',
     isAuth , 
-    isAdmin,
-    isSeller,
     isSellerOrAdmin,
     expressAsyncHandler(async (req, res) => {
         const product = new Product({
