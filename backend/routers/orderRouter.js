@@ -5,20 +5,22 @@ import { isAdmin, isAuth, isSellerOrAdmin } from "../utils.js";
 
 const orderRouter = express.Router();
 
-orderRouter.get('/',
+orderRouter.get(
+    '/',
     isAuth,
-    isSellerOrAdmin, 
+    isSellerOrAdmin,
     expressAsyncHandler(async (req, res) => {
-        
-        const seller = req.body.seller || '';
-        const sellerFilter = seller ? {seller} :{};
-        const orders = await Order.find({...sellerFilter}).populate(
-            'user',
-            'name'
-          );
-        res.send(orders);
+      const seller = req.query.seller || '';
+      const sellerFilter = seller ? { seller } : {};
+  
+      const orders = await Order.find({ ...sellerFilter }).populate(
+        'user',
+        'name'
+      );
+      res.send(orders);
     })
-);
+  );
+  
 orderRouter.get(
     '/mine', 
     isAuth, 

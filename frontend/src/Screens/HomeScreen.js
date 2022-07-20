@@ -9,31 +9,31 @@ import { Carousel } from 'react-responsive-carousel';
 import { listTopSellers } from '../actions/userActions';
 import { Link } from 'react-router-dom';
 
-    export default function HomeScreen(){
-     const productList = useSelector( (state) =>state.productList);
-     const {loading , error , products}= productList;
-     const userTopSellersList = useSelector((state) => state.userTopSellersList);
-     const {
-      loading: loadingSellers,
-      error: errorSellers,
-      users: sellers,
-     } = userTopSellersList;
+export default function HomeScreen(){
+  const productList = useSelector( (state) =>state.productList);
+  const {loading , error , products}= productList;
+  const userTopSellersList = useSelector((state) => state.userTopSellersList);
+  const {
+    loading: loadingSellers,
+    error: errorSellers,
+    users: sellers,
+  } = userTopSellersList;
 
-     const dispatch = useDispatch();
-      useEffect(() => {
+  const dispatch = useDispatch();
+    useEffect(() => {
     dispatch(listProducts({}));
     dispatch(listTopSellers());
   }, [dispatch]);
-     return(
-       <div>
-        <h2>Nos Agences</h2>
+  return(
+    <div>
+      <h2>Nos Agences</h2>
       {loadingSellers ? (
         <LoadingBox></LoadingBox>
       ) : errorSellers ? (
         <MessageBox variant="danger">{errorSellers}</MessageBox>
       ) : (
         <>
-          {sellers.length === 0 && <MessageBox>Aucun Proprietaire trouver</MessageBox>}
+          {sellers.length === 0 && <MessageBox>Aucune Agnece trouver</MessageBox>}
           <Carousel showArrows autoPlay showThumbs={false}>
             {sellers.map((seller) => (
               <div key={seller._id}>

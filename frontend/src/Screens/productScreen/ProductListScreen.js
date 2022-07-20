@@ -33,9 +33,18 @@ export default function ProductListScreen(props) {
     if (successDelete) {
       dispatch({ type: PRODUCT_DELETE_RESET });
     }
-    dispatch(listProducts({ seller: sellerMode ? userInfo._id : '',pageNumber})
+    dispatch(listProducts({ seller: sellerMode ? userInfo._id : '', pageNumber})
     );
-  } , [dispatch , pageNumber ,  sellerMode , successCreate , userInfo._id, createdProduct , props.history , successDelete ]);
+  } , [
+    createdProduct,
+    dispatch,
+    props.history,
+    sellerMode,
+    successCreate,
+    successDelete,
+    userInfo._id,
+    pageNumber,
+  ]);
   
   const createHandler =()=> {
     dispatch(createProduct());
@@ -66,6 +75,7 @@ export default function ProductListScreen(props) {
             <thead>
               <tr>
                 <th> ID</th>
+                <th>Agences</th>
                 <th> Nom</th>
                 <th>Prix</th>
                 <th>Catégories</th>
@@ -77,6 +87,7 @@ export default function ProductListScreen(props) {
                 {products.map((product) =>(
                   <tr key={product.id}>
                     <td>{product._id}</td>
+                    <td>{product.seller.seller.name}</td>
                     <td>{product.name}</td>
                     <td>{product.prix}</td>
                     <td>{product.category}</td>

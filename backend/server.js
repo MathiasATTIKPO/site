@@ -12,7 +12,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}))
 dotenv.config();
 
-Mongoose.connect(process.env.MONGODB_URL || 'mongodb+srv://mathiasattikpo:Mathias1405@site.1ha1b.mongodb.net/SITE',{
+Mongoose.connect(process.env.MONGODB_URL || 
+'mongodb+srv://mathiasattikpo:Mathias1405@site.1ha1b.mongodb.net/SITE'
+//'mongodb://localhost:27017/SITE'
+
+,{
     userNewUrlParser: true ,
     useUnifiedTopology:true ,
     useCreateIndex:true ,

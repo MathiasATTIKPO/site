@@ -2,21 +2,75 @@ import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import data from '../data.js';
 import Product from '../models/productModel.js';
+import User from '../models/userModel.js';
 import { isAdmin, isAuth  , isSellerOrAdmin} from '../utils.js';
 
 
 const  productRouter = express.Router();
 
-productRouter.get('/',
-    expressAsyncHandler(async (req, res) => {
-        const seller = req.query.seller || '';
-        const sellerFilter = seller ? { seller } : {};
-        const products =  await Product.find({
-            ...sellerFilter,
-        }).populate('seller', 'seller.name seller.photo');
-        res.send(products);
+productRouter.get(
+  '/',
+  expressAsyncHandler(async (req, res) => {
+    const pageSize = 6;
+    const page = Number(req.query.pageNumber) || 1;
+    const name = req.query.name || '';
+    const category = req.query.category || '';
+    const seller = req.query.seller || '';
+    const order = req.query.order || '';
+    
+    const min =
+      req.query.min && Number(req.query.min) !== 0 ? Number(req.query.min) : 0;
+    const max =
+      req.query.max && Number(req.query.max) !== 0 ? Number(req.query.max) : 0;
+    const rating =
+      req.query.rating && Number(req.query.rating) !== 0
+        ? Number(req.query.rating)
+        : 0;
+
+    const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
+    const sellerFilter = seller ? { seller } : {};
+    const categoryFilter = category ? { category } : {};
+    const priceFilter = min && max ? { prix: { $gte: min, $lte: max } } : {};
+    const ratingFilter = rating ? { rating: { $gte: rating } } : {};
+    const sortOrder =
+      order === 'lowest'
+        ? { prix: 1 }
+        : order === 'highest'
+        ? { prix: -1 }
+        : order === 'toprated'
+        ? { rating: -1 }
+        : { _id: -1 };
+    const count = await Product.count({
+      ...sellerFilter,
+      ...nameFilter,
+      ...categoryFilter,
+      ...priceFilter,
+      ...ratingFilter,
+    });
+
+    const products = await Product.find({
+      ...sellerFilter,
+      ...nameFilter,
+      ...categoryFilter,
+      ...priceFilter,
+      ...ratingFilter,
     })
+      .populate('seller', 'seller.name seller.photo')
+      .sort(sortOrder)
+      .skip(pageSize * (page - 1))
+      .limit(pageSize);
+    res.send({ products, page, pages: Math.ceil(count / pageSize) });
+  })
 );
+
+productRouter.get(
+  '/categories',
+  expressAsyncHandler(async (req, res) => {
+    const categories = await Product.find().distinct('category');
+    res.send(categories);
+  })
+);
+
 productRouter.get(
     '/seed' , 
     expressAsyncHandler(async (req, res) => {
@@ -94,7 +148,7 @@ productRouter.put(
 
 productRouter.delete('/:id' , 
     isAuth, 
-    isSellerOrAdmin , 
+    isAdmin , 
     expressAsyncHandler(async (req, res)=>{
         const productId = req.params.id ;
         const  product = await Product.findById(productId);

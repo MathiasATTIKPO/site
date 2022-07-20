@@ -6,6 +6,7 @@ import MessageBox from '../../components/MessageBox';
 import { ORDER_DELETE_RESET } from '../../constant/orderConstants';
 
 export default function OrderListScreen(props) {
+    
     const sellerMode = props.match.path.indexOf('/seller') >= 0;
     const dispatch = useDispatch();
     const ordersList = useSelector((state) => state.ordersList)
