@@ -1,4 +1,4 @@
- import { 
+ const { 
    PRODUCT_CATEGORY_LIST_FAIL,
    PRODUCT_CATEGORY_LIST_REQUEST,
    PRODUCT_CATEGORY_LIST_SUCCESS,
@@ -23,7 +23,7 @@
     PRODUCT_UPDATE_FAIL, 
     PRODUCT_UPDATE_REQUEST,
     PRODUCT_UPDATE_RESET,
-    PRODUCT_UPDATE_SUCCESS} from "../constant/productConstante";
+    PRODUCT_UPDATE_SUCCESS} = require("../constant/productConstante");
 
 export const productListReducer = (
     state ={ loading :true ,products: [] } ,

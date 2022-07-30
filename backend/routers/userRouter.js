@@ -14,7 +14,7 @@ userRouter.get(
   expressAsyncHandler(async (req, res) => {
     const topSellers = await User.find({ isSeller: true })
       .sort({ 'seller.rating': -1 })
-      .limit(3);
+      .limit(4);
     res.send(topSellers);
   })
 );
@@ -72,7 +72,7 @@ userRouter.get(
     if (user) {
       res.send(user);
     } else {
-      res.status(404).send({ message: 'User Not Found' });
+      res.status(404).send({ message: 'Aucun utilisateur trouvé...' });
     }
   })
 );

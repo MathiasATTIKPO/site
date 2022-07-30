@@ -55,7 +55,9 @@ export default function ProductListScreen(props) {
     }
    
   };
+  //console.log("le seller",sellerMode);
   return (
+    
     <div>
       <div className="row">
         <h1> Logement</h1>
@@ -82,9 +84,10 @@ export default function ProductListScreen(props) {
                 <th>images</th>
                 <th>ACTIONS</th>
               </tr>
-              </thead>
-              <tbody>
-                {products.map((product) =>(
+            </thead>
+            <tbody>
+                {
+                  products.map((product) =>(
                   <tr key={product.id}>
                     <td>{product._id}</td>
                     <td>{product.seller.seller.name}</td>
@@ -107,7 +110,7 @@ export default function ProductListScreen(props) {
                     </td>
                   </tr>
                 ))}
-              </tbody>
+            </tbody>
             
           </table>
           <div className="row center pagination">

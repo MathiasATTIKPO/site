@@ -179,7 +179,7 @@ function App() {
         <main>
             <Route path='/seller/:id' component={SellerScreen}></Route>
             <Route path='/cart/:id?' component={CartScreen}></Route>
-            <Route  path='/product/:id' component={ProductScreen}></Route>
+            <Route  path='/product/:id' component={ProductScreen} exact></Route>
             <Route  path='/productAdmin/:id' component={ProductAdminScreen}></Route>
             <Route path='/signin' component={SigninScreen}></Route>
             <Route path='/shipping' component={ShippingAdresseScreen}></Route>
@@ -202,7 +202,7 @@ function App() {
 
             <SellerRoute path='/productlist/seller' component={ProductListScreen}></SellerRoute>
             <SellerRoute path='/orderlist/seller' component={OrderListScreen}></SellerRoute>
-            <Route path="/productAdmin/:id/edit" component={ProductEditScreen} exact></Route>
+            <Route path="/productAdmin/:id/edit" component={ProductEditScreen} ></Route>
 
             <Route path='/' component={HomeScreen} exact></Route>
         </main>

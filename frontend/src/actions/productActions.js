@@ -43,7 +43,7 @@ export const listProducts = ({
   } catch (error) {
     dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
   }
-};  
+};
 
 export const listProductCategories = () => async (dispatch) => {
   dispatch({

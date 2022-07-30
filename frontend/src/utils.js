@@ -1,44 +1,43 @@
 export const prix = [
-    {
-      name: 'Any',
-      min: 0,
-      max: 0,
-    },
-    {
-      name: `$1 to $10`,
-      min: 1,
-      max: 10,
-    },
-    {
-      name: `$10 to $100`,
-      min: 10,
-      max: 100,
-    },
-    {
-      name: `$100 to $1000`,
-      min: 100,
-      max: 1000,
-    },
-  ];
-  export const ratings = [
-    {
-      name: '4stars & up',
-      rating: 4,
-    },
-  
-    {
-      name: '3stars & up',
-      rating: 3,
-    },
-  
-    {
-      name: '2stars & up',
-      rating: 2,
-    },
-  
-    {
-      name: '1stars & up',
-      rating: 1,
-    },
-  ];
-  
+  {
+    name: 'Tout',
+    min: 0,
+    max: 0,
+  },
+  {
+    name: `XOF 10000 to XOF 30000`,
+    min: 10000,
+    max: 30000,
+  },
+  {
+    name: `XOF 30000 to XOF 50000`,
+    min: 30000,
+    max: 50000,
+  },
+  {
+    name: `XOF 50000 to XOF 100000`,
+    min: 50000,
+    max: 100000,
+  },
+];
+export const ratings = [
+  {
+    name: 'etoiles et plus',
+    rating: 4,
+  },
+
+  {
+    name: '3 etoiles et plus',
+    rating: 3,
+  },
+
+  {
+    name: '2 etoiles et plus',
+    rating: 2,
+  },
+
+  {
+    name: '1 etoiles et plus',
+    rating: 1,
+  },
+];
