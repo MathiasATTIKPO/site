@@ -1,5 +1,5 @@
 import express from 'express';
-import  Mongoose  from 'mongoose';
+import Mongoose  from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';
 import productRouter from './routers/productRouter.js';
@@ -13,8 +13,8 @@ app.use(express.urlencoded({ extended: true}))
 dotenv.config();
 
 Mongoose.connect(process.env.MONGODB_URL || 
-'mongodb+srv://mathiasattikpo:Mathias1405@site.1ha1b.mongodb.net/SITE'
-//'mongodb://localhost:27017/SITE'
+//'mongodb+srv://mathiasattikpo:Mathias1405@site.1ha1b.mongodb.net/SITE'
+'mongodb://localhost:27017/SITE'
 ,{
     userNewUrlParser: true ,
     useUnifiedTopology:true ,
@@ -37,6 +37,8 @@ app.use(express.static(path.join(__dirname, '/frontend/build')));
 app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
 );
+
+
  app.get('/',(req , res) =>{
      res.send('Serveur pret');
  });

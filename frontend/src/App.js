@@ -29,6 +29,7 @@ import { listProductCategories } from './actions/productActions';
 import LoadingBox from './components/LoadingBox';
 import MessageBox from './components/MessageBox';
 import SearchScreen from './Screens/SearchScreen';
+import DashboardScreen from './Screens/DashboardScreen';
 
 
 
@@ -199,7 +200,7 @@ function App() {
             <AdminRoute path='/ordersList' component={OrderListScreen} exact></AdminRoute>
             <AdminRoute path='/userList' component={UserListScreen} exact></AdminRoute>
             <AdminRoute path="/user/:id/edit" component={UserEditScreen}></AdminRoute>
-
+            <AdminRoute path="/dashboard" component={DashboardScreen}></AdminRoute>
             <SellerRoute path='/productlist/seller' component={ProductListScreen}></SellerRoute>
             <SellerRoute path='/orderlist/seller' component={OrderListScreen}></SellerRoute>
             <Route path="/productAdmin/:id/edit" component={ProductEditScreen} ></Route>
