@@ -3,7 +3,8 @@ import expressAsyncHandler from "express-async-handler";
 import Order from "../models/orderModel.js";
 import User from "../models/userModel.js";
 import Product from "../models/productModel.js";
-import { isAdmin, isAuth, isSellerOrAdmin } from "../utils.js";
+import { isAdmin, isAuth, isSellerOrAdmin  , mailgun,
+  payOrderEmailTemplate,} from "../utils.js";
 
 const orderRouter = express.Router();
 
@@ -152,7 +153,7 @@ orderRouter.put('/:id/pay' ,
             const updateOrder = await order.save();
 
             mailgun()
-            .message()
+            .messages()
             .send(
               {
               from: 'LOCALOLI <localoli@mg.sandboxe056f65542fa44c79527acc260feb57f.mailgun.org.com>',
