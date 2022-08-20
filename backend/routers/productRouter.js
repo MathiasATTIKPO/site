@@ -8,6 +8,29 @@ import { isAdmin, isAuth  , isSellerOrAdmin} from '../utils.js';
 
 const  productRouter = express.Router();
 
+
+productRouter.get(
+  '/admin',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const { query } = req;
+    const page = query.page || 1;
+    const pageSize = query.pageSize || PAGE_SIZE;
+
+    const products = await Product.find()
+      .skip(pageSize * (page - 1))
+      .limit(pageSize);
+    const countProducts = await Product.countDocuments();
+    res.send({
+      products,
+      countProducts,
+      page,
+      pages: Math.ceil(countProducts / pageSize),
+    });
+  })
+);
+
 productRouter.get(
   '/',
   expressAsyncHandler(async (req, res) => {
@@ -40,7 +63,7 @@ productRouter.get(
         : order === 'toprated'
         ? { rating: -1 }
         : { _id: -1 };
-    const count = await Product.count({
+    const count = await Product.countDocuments({
       ...sellerFilter,
       ...nameFilter,
       ...categoryFilter,
@@ -185,8 +208,10 @@ productRouter.post(
         product.reviews.length;
       const updatedProduct = await product.save();
       res.status(201).send({
-        message: 'Review Created',
+        message: 'Appreciation reçu',
         review: updatedProduct.reviews[updatedProduct.reviews.length - 1],
+        numReviews: product.numReviews,
+        rating: product.rating,
       });
     } else {
       res.status(404).send({ message: 'Aucun logement trouvé...' });

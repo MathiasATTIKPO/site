@@ -119,7 +119,7 @@ button:hover{
 
 a.brand{
   color: #ffffff;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bold;
 
 }
@@ -241,13 +241,14 @@ h2{
 }
 .dropdown-content {
   position: absolute;
+  
   display: none;
   right: 0;
-  min-width: 12rem;
+  min-width: 15rem;
   padding: 1rem;
   z-index: 1;
   background-color: #1254d8;
-  margin: 0;
+  margin: 0.5rem;
   margin-top: 0.4rem;
   border-radius: 0.5rem;
 }
@@ -283,18 +284,37 @@ h2{
 
 /* Search */
 
-.search button {
-  border-radius: 0 0.5rem 0.5rem 0;
-  border-right: none;
-  margin-right: 0.5rem;
-}
 .search input {
-  border-radius: 0.5rem 0 0 0.5rem;
+  
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
   border-right: none;
-  margin-left: 0.5rem;
+  margin-left: 0rem;
+  font-size: 1.5rem;
 }
 .active {
   font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */  
+  a.brand{
+    font-size: 0;
+    width: 25%;
+  }
+
+  .search input{
+    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+    border-right: none;
+    margin-right: 0.5rem;
+    width: auto;
+  }
+
+
+  header {
+    width: 100%;
+    justify-content: auto;
+  }
+  
 }
 
 /*table*/

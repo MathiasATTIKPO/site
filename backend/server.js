@@ -12,6 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}))
 dotenv.config();
 
+/*
 Mongoose.connect(process.env.MONGODB_URL || 
 //'mongodb+srv://mathiasattikpo:Mathias1405@site.1ha1b.mongodb.net/SITE'
 'mongodb://localhost:27017/SITE'
@@ -19,7 +20,16 @@ Mongoose.connect(process.env.MONGODB_URL ||
     userNewUrlParser: true ,
     useUnifiedTopology:true ,
     useCreateIndex:true ,
-});
+});*/
+
+Mongoose
+  .connect(process.env.MONGODB_URL|| 'mongodb://localhost:27017/SITE')
+  .then(() => {
+    console.log('connected to db');
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
 
 
  app.use('/api/uploads' , uploadRouter);

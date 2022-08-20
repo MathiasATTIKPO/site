@@ -77,7 +77,8 @@ function App() {
             ></Route>
           </div>
             <div>
-                <Link to="/cart"> CARTES  
+                <Link to="/cart"> 
+                <i className="fa fa-shopping-cart" aria-hidden="true"></i>  
                 {cartItems.length > 0 && (
                     <span className ="badge">{cartItems.length}</span>
                 )
@@ -87,7 +88,7 @@ function App() {
                   userInfo ?(
 
                   <div className="dropdown">
-                    <Link to="#">{userInfo.name} <i className="fa fa-caret-down"></i>{' '}</Link> 
+                    <Link to="#">{userInfo.name} <i class="fa fa-user-circle" aria-hidden="true"></i>{' '}</Link> 
                     <ul className="dropdown-content">
                       <li>
                         <Link to="/profile">Profile</Link>
@@ -100,8 +101,8 @@ function App() {
                           {userInfo && userInfo.isAdmin && (
                              <ul>
                               <li>
-                              <Link to="#admin">
-                                Administrateur 
+                              <Link to="/dashboard">
+                                Tableau de bords 
                               </Link>
                               </li>
                               <li>
@@ -140,7 +141,7 @@ function App() {
                   </div>
                   ): 
                   (
-                    <Link to="/signin">SE CONNECTER</Link>
+                    <Link to="/signin">Se connecter</Link>
                   )
                 }
                 
