@@ -297,9 +297,8 @@ h2{
 
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */  
-  a.brand{
-    font-size: 0;
-    width: 25%;
+  a.brand::first-letter{
+    width: 39px;
   }
 
   .search input{
@@ -311,8 +310,9 @@ h2{
 
 
   header {
-    width: 100%;
+    width: auto !important;
     justify-content: auto;
+    padding: auto;
   }
   
 }
