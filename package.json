@@ -8,8 +8,7 @@
     "jsonwebtoken": "^8.5.1",
     "mailgun-js": "^0.6.7",
     "mongoose": "^6.5.2",
-    "multer": "^1.4.5-lts.1",
-    "swagger-ui-react": "^4.14.0"
+    "multer": "^1.4.5-lts.1"
   },
   "name": "site",
   "type": "module",
