@@ -7,6 +7,7 @@ import userRouter from './routers/userRouter.js';
 import orderRouter from './routers/orderRouter.js';
 import uploadRouter from './routers/uploadRouter.js';
 
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}))
@@ -23,13 +24,18 @@ Mongoose.connect(process.env.MONGODB_URL ||
 });*/
 
 Mongoose
-  .connect(process.env.MONGODB_URL|| 'mongodb://localhost:27017/SITE')
+  .connect(process.env.MONGODB_URL|| 
+    //'mongodb://localhost:27017/SITE'
+    'mongodb+srv://mathiasattikpo:Mathias1405@site.1ha1b.mongodb.net/SITE'
+    )
   .then(() => {
     console.log('connected to db');
   })
   .catch((err) => {
     console.log(err.message);
   });
+
+
 
 
  app.use('/api/uploads' , uploadRouter);

@@ -19,6 +19,17 @@ userRouter.get(
   })
 );
 
+userRouter.get(
+  '/seller',
+  expressAsyncHandler(async (req, res) => {
+    const seller = await User.find({ isSeller: true })
+      .sort({ 'seller.rating': -1 })
+      .limit(4);
+    res.send(seller);
+  })
+);
+
+
 userRouter.get('/seed',
     expressAsyncHandler (async (req, res) => {
     //await User.remove({});
@@ -79,8 +90,8 @@ userRouter.get(
 
 userRouter.get(
   '/',
- /* isAuth,
-  isAdmin,*/
+  isAuth,
+  isAdmin,
   expressAsyncHandler(async (req, res) => {
     const users = await User.find({});
     res.send(users);

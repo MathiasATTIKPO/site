@@ -45,6 +45,7 @@ export default function OrderListScreen(props) {
             <thead>
                 <th> ID </th>
                 <th>Locataire </th>
+                <th>Agences </th>
                 <th> Date </th>
                 <th> Total </th>
                 <th> Payer</th>
@@ -56,6 +57,7 @@ export default function OrderListScreen(props) {
                     <tr key={order.id}>
                         <td>{order._id}</td>
                         <td>{order.user.name}</td>
+                        <td>{order.seller._id}</td>
                         <td>{order.createdAt.substring(0,10)}</td>
                         <td>{order.totalPrice}</td>
                         <td>

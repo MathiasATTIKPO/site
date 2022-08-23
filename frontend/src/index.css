@@ -26,6 +26,7 @@ body{
 header{
   grid-area: header;
   background-color: #1254d8;
+  
 }
 
 main{  
@@ -59,8 +60,7 @@ footer{
 }
 .row.start {
   justify-content: flex-start;
-}
-.col-1 {
+}.col-1 {
   flex: 1 1 25rem;
 }
 .col-2 {
@@ -241,26 +241,12 @@ h2{
 }
 .dropdown-content {
   position: absolute;
-  
-  display: none;
-  right: 0;
-  min-width: 15rem;
-  padding: 1rem;
-  z-index: 1;
-  background-color: #1254d8;
-  margin: 0.5rem;
-  margin-top: 0.4rem;
-  border-radius: 0.5rem;
-}
-
-.dropdown-content2 {
-  position: absolute;
   display: none;
   right: 0;
   min-width: 12rem;
   padding: 1rem;
   z-index: 1;
-  background-color: #1254d8;
+  background-color: #203040;
   margin: 0;
   margin-top: 0.4rem;
   border-radius: 0.5rem;
@@ -306,6 +292,7 @@ h2{
     border-right: none;
     margin-right: 0.5rem;
     width: auto;
+   
   }
 
 

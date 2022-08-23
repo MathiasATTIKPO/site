@@ -10,31 +10,9 @@ const  productRouter = express.Router();
 
 
 productRouter.get(
-  '/admin',
-  isAuth,
-  isAdmin,
-  expressAsyncHandler(async (req, res) => {
-    const { query } = req;
-    const page = query.page || 1;
-    const pageSize = query.pageSize || PAGE_SIZE;
-
-    const products = await Product.find()
-      .skip(pageSize * (page - 1))
-      .limit(pageSize);
-    const countProducts = await Product.countDocuments();
-    res.send({
-      products,
-      countProducts,
-      page,
-      pages: Math.ceil(countProducts / pageSize),
-    });
-  })
-);
-
-productRouter.get(
   '/',
   expressAsyncHandler(async (req, res) => {
-    const pageSize = 6;
+    const pageSize = 4;
     const page = Number(req.query.pageNumber) || 1;
     const name = req.query.name || '';
     const category = req.query.category || '';
@@ -93,6 +71,8 @@ productRouter.get(
     res.send(categories);
   })
 );
+
+
 
 productRouter.get(
     '/seed' , 

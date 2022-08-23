@@ -12,6 +12,8 @@ import {
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
+  USER_SELLERS_LIST_FAIL,
+  USER_SELLERS_LIST_SUCCESS,
   USER_SIGNIN_FAIL,
   USER_SIGNIN_REQUEST,
   USER_SIGNIN_SUCCESS,
@@ -175,6 +177,20 @@ export const listTopSellers =() => async (dispatch , getState)=>{
         ? error.response.data.message
         : error.message;
     dispatch({ type: USER_TOPSELLERS_LIST_FAIL, payload: message });
+  }
+};
+
+export const listSellers =() => async (dispatch , getState)=>{
+  dispatch({ type: USER_TOPSELLERS_LIST_REQUEST });
+  try {
+    const { data } = await Axios.get('/api/users/sellers');
+    dispatch({ type: USER_SELLERS_LIST_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: USER_SELLERS_LIST_FAIL, payload: message });
   }
 };
 

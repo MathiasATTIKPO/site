@@ -34,7 +34,8 @@ import DashboardScreen from './Screens/DashboardScreen';
 
 
 
-function App() {
+
+function App()  {
 
   const cart = useSelector((state) => state.cart);
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
@@ -76,7 +77,7 @@ function App() {
               )}
             ></Route>
           </div>
-            <div>
+          <div>
                 <Link to="/cart"> 
                 <i className="fa fa-shopping-cart" aria-hidden="true"></i>  
                 {cartItems.length > 0 && (
@@ -84,9 +85,7 @@ function App() {
                 )
                 }
                 </Link>
-                {
-                  userInfo ?(
-
+                {userInfo ?(
                   <div className="dropdown">
                     <Link to="#">{userInfo.name} <i class="fa fa-user-circle" aria-hidden="true"></i>{' '}</Link> 
                     <ul className="dropdown-content">
@@ -95,44 +94,6 @@ function App() {
                       </li>
                       <li>
                         <Link to="/orderHistory"> Historiques</Link>
-                      </li>
-                      
-                      <li>
-                          {userInfo && userInfo.isAdmin && (
-                             <ul>
-                              <li>
-                              <Link to="/dashboard">
-                                Tableau de bords 
-                              </Link>
-                              </li>
-                              <li>
-                                  <Link to="/productlist">Logements</Link>
-                              </li>
-                              <li>
-                                  <Link to="/ordersList">Loactions</Link>
-                              </li>
-                              <li>
-                                <Link to="/userList"> Utilisateurs</Link>
-                              </li>
-                              </ul>
-                          )}
-                      </li>
-                            {userInfo && userInfo.isSeller && (
-                              <ul>
-                              <li>
-                                <Link to="#admin">
-                                    Proprietaire
-                                </Link>
-                              </li>
-                              <li>
-                                <Link to="/productlist/seller">Logements</Link>
-                              </li>
-                              <li>
-                                <Link to="/orderlist/seller">Locations</Link>
-                              </li>
-                              </ul>
-                            )}
-                      <li>
                       </li>
                       <li>
                         <Link to="/" onClick={signoutHandler}>Se deconnecter</Link>
@@ -144,10 +105,44 @@ function App() {
                     <Link to="/signin">Se connecter</Link>
                   )
                 }
-                
-                
-            </div>
-        </header>
+                {userInfo && userInfo.isAdmin && (
+                  <div className="dropdown">
+                    <Link to="#admin">
+                        Administrateur
+                      </Link>
+                    <ul className="dropdown-content">
+                      <li>
+                        <Link to="/dashboard">
+                          dashboard
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/productlist">Logements</Link>
+                      </li>
+                      <li>
+                          <Link to="/ordersList">Loactions</Link>
+                      </li>
+                      <li>
+                        <Link to="/userList"> Utilisateurs</Link>
+                      </li>
+                    </ul>
+                  </div>)}
+                  {userInfo && userInfo.isSeller && (
+                    <div className="dropdown">
+                      <Link to="#admin">
+                        Proprietaire
+                      </Link>
+                      <ul className="dropdown-content">
+                        <li>
+                          <Link to="/productList/seller/">Logements</Link>
+                        </li>
+                        <li>
+                          <Link to="/orderlist/seller">Locations</Link>
+                        </li>
+                      </ul>
+                    </div>)}
+        </div>
+      </header>
         <aside className={sidebarIsOpen ? 'open' : ''}>
           <ul className="categories">
             <li>
@@ -202,7 +197,7 @@ function App() {
             <AdminRoute path='/userList' component={UserListScreen} exact></AdminRoute>
             <AdminRoute path="/user/:id/edit" component={UserEditScreen}></AdminRoute>
             <AdminRoute path="/dashboard" component={DashboardScreen}></AdminRoute>
-            <SellerRoute path='/productlist/seller' component={ProductListScreen}></SellerRoute>
+            <SellerRoute path='/productlist/seller/:seller?' component={ProductListScreen}></SellerRoute>
             <SellerRoute path='/orderlist/seller' component={OrderListScreen}></SellerRoute>
             <Route path="/productAdmin/:id/edit" component={ProductEditScreen} ></Route>
 

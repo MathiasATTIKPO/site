@@ -9,6 +9,22 @@ import { isAdmin, isAuth, isSellerOrAdmin  , mailgun,
 const orderRouter = express.Router();
 
 orderRouter.get(
+  '/',
+  isAuth,
+  isSellerOrAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const seller = req.query.seller || '';
+    const sellerFilter = seller ? { seller } : {};
+
+    const orders = await Order.find({ ...sellerFilter }).populate(
+      'user',
+      'name'
+    );
+    res.send(orders);
+  })
+); 
+
+orderRouter.get(
   '/summary',
   isAuth,
   isAdmin,
@@ -98,21 +114,6 @@ orderRouter.get(
   })
 );
 
-orderRouter.get(
-    '/',
-    isAuth,
-    isSellerOrAdmin,
-    expressAsyncHandler(async (req, res) => {
-      const seller = req.query.seller || '';
-      const sellerFilter = seller ? { seller } : {};
-  
-      const orders = await Order.find({ ...sellerFilter }).populate(
-        'user',
-        'name'
-      );
-      res.send(orders);
-    })
-  ); 
 
 orderRouter.get(
     '/mine', 
@@ -121,8 +122,6 @@ orderRouter.get(
     const orders = await  Order.find({user: req.user._id});
     res.send(orders);
 }));
-
-
 orderRouter.get('/:id' ,
     isAuth ,
     expressAsyncHandler(async (req, res) => {
@@ -130,12 +129,36 @@ orderRouter.get('/:id' ,
         if (order) {
             res.send(order);
         }else{
-            res.status(404).send({message:'Order not found'}); 
+            res.status(404).send({message:'Pas de location trouvé'}); 
         }
     })
 );
 
-
+orderRouter.post('/' , 
+    isAuth , 
+    expressAsyncHandler(async (req, res) =>{
+        if(req.body.orderItems.length === 0){
+            res.status(400).send({
+                message:'La liste est vide'
+            });
+        }else{
+            const order = new Order({
+                seller : req.body.orderItems[0].seller,
+                orderItems : req.body.orderItems,
+                shippingAddress : req.body.shippingAddress,
+                paymentMethod : req.body.paymentMethod,
+                itemsPrice : req.body.itemsPrice,
+                taxPrice : req.body.taxPrice,
+                totalPrice : req.body.totalPrice,
+                shippingPrice : req.body.shippingPrice,
+                user : req.user._id ,
+            });
+            const createdOrder = await order.save();
+            res.status(201).send({
+                message:'New Order created' , order :createdOrder});
+        }
+    })
+);
 
 orderRouter.put('/:id/pay' , 
     isAuth , 
@@ -176,28 +199,19 @@ orderRouter.put('/:id/pay' ,
     })
 );
 
-orderRouter.post('/' , 
-    isAuth , 
-    expressAsyncHandler(async (req, res) =>{
-        if(req.body.orderItems.length === 0){
-            res.status(400).send({
-                message:'La liste est vide'
-            });
+orderRouter.put('/:id/busy',
+    isAuth,
+    isAdmin,
+    expressAsyncHandler(async (req, res) => {
+        const order = await Order.findById(req.params.id);
+        if(order){
+            order.busy= true;
+            order.busyAt= Date.now();
+
+            const updateOrder = await order.save();
+            res.send({message :'Logement Occuper ' , order :updateOrder});
         }else{
-            const order = new Order({
-                seller : req.body.orderItems[0].seller,
-                orderItems : req.body.orderItems,
-                shippingAddress : req.body.shippingAddress,
-                paymentMethod : req.body.paymentMethod,
-                itemsPrice : req.body.itemsPrice,
-                taxPrice : req.body.taxPrice,
-                totalPrice : req.body.totalPrice,
-                shippingPrice : req.body.shippingPrice,
-                user : req.user._id ,
-            });
-            const createdOrder = await order.save();
-            res.status(201).send({
-                message:'New Order created' , order :createdOrder});
+            res.status(404).send({message :'Logment non trouvé'});
         }
     })
 );
@@ -216,22 +230,6 @@ orderRouter.delete('/:id',
     })
 );
 
-orderRouter.put('/:id/busy',
-    isAuth,
-    isAdmin,
-    expressAsyncHandler(async (req, res) => {
-        const order = await Order.findById(req.params.id);
-        if(order){
-            order.busy= true;
-            order.busyAt= Date.now();
-
-            const updateOrder = await order.save();
-            res.send({message :'Logement Occuper ' , order :updateOrder});
-        }else{
-            res.status(404).send({message :'Logment non trouvé'});
-        }
-    })
-);
 
 
 
