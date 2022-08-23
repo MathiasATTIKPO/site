@@ -179,7 +179,7 @@ orderRouter.put('/:id/pay' ,
             .messages()
             .send(
               {
-              from: 'LOCALOLI <localoli@mg.sandboxe056f65542fa44c79527acc260feb57f.mailgun.org.com>',
+              from: 'LOCALOLI <localoli@localoli.com>',
               to: `${order.user.name} <${order.user.email}>`,
               subject: `Nouvelle Location ${order._id}`,
               html: payOrderEmailTemplate(order),

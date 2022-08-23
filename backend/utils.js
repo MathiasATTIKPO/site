@@ -98,23 +98,23 @@ export const isSellerOrAdmin = (req, res, next) => {
     <td align="right"> $${order.itemsPrice.toFixed(2)}</td>
     </tr>
     <tr>
-    <td colspan="2">Tax Price:</td>
+    <td colspan="2">Prix de la taxe:</td>
     <td align="right"> $${order.taxPrice.toFixed(2)}</td>
     </tr>
     <tr>
-    <td colspan="2">Shipping Price:</td>
+    <td colspan="2">Prix ht :</td>
     <td align="right"> $${order.shippingPrice.toFixed(2)}</td>
     </tr>
     <tr>
-    <td colspan="2"><strong>Total Price:</strong></td>
+    <td colspan="2"><strong>Prix de la Location:</strong></td>
     <td align="right"><strong> $${order.totalPrice.toFixed(2)}</strong></td>
     </tr>
     <tr>
-    <td colspan="2">Payment Method:</td>
+    <td colspan="2">Methode de payment :</td>
     <td align="right">${order.paymentMethod}</td>
     </tr>
     </table>
-    <h2>Shipping address</h2>
+    <h2>Information locataire</h2>
     <p>
     ${order.shippingAddress.fullName},<br/>
     ${order.shippingAddress.address},<br/>
@@ -124,7 +124,7 @@ export const isSellerOrAdmin = (req, res, next) => {
     </p>
     <hr/>
     <p>
-    Thanks for shopping with us.
+    Merci pour la confiance.
     </p>
     `;
   };

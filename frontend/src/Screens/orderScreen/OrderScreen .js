@@ -177,7 +177,7 @@ export default function OrderScreen(props){
                       </li>
                     )
                   }
-                  {userInfo.isAdmin && order.isPaid && !order.busy && (
+                  {userInfo.isAdmin  && order.isPaid && !order.busy && (
                     <li>
                       {loadingUpdate && <LoadingBox></LoadingBox>}
                       {errorUpdate && (
