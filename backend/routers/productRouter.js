@@ -137,7 +137,7 @@ productRouter.put(
       if (product) {
         product.name = req.body.name;
         product.prix = req.body.prix;
-        product.image = req.body.image;
+        product.images = req.body.image;
         product.category = req.body.category;
         product.countInStock = req.body.countInStock;
         product.description = req.body.description;

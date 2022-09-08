@@ -64,8 +64,8 @@ export const isSellerOrAdmin = (req, res, next) => {
 
   export const mailgun = () =>
   mg({
-    apiKey: process.env.MAILGUN_API_KEY,
-    domain: process.env.MAILGUN_DOMIAN,
+    apiKey:'86843c642c446f9d0efce0c8bb6c274c-07a637b8-47632242',
+    domain:'sandbox5faf888782fa4f3382a9e3e8e9117bd3.mailgun.org',
   });
 
   export const payOrderEmailTemplate = (order) => {
@@ -73,11 +73,11 @@ export const isSellerOrAdmin = (req, res, next) => {
     <p>
     Bonjour ${order.user.name},</p>
     <p>Vous avez terminé votre processus de location</p>
-    <h2>[Order ${order._id}] (${order.createdAt.toString().substring(0, 10)})</h2>
+    <h2>[Location    ${order._id}] du  (${order.createdAt.toString().substring(0, 10)})</h2>
     <table>
     <thead>
     <tr>
-    <td><strong>Logement</strong></td>
+    <td><strong>Designation</strong></td>
     <td><strong align="right">Prix</strong></td>
     </thead>
     <tbody>
@@ -86,7 +86,7 @@ export const isSellerOrAdmin = (req, res, next) => {
         (item) => `
       <tr>
       <td>${item.name}</td>
-      <td align="right"> $${item.prix.toFixed(2)}</td>
+      <td align="right"> XOF ${item.prix.toFixed(1)}</td>
       </tr>
     `
       )
@@ -94,32 +94,32 @@ export const isSellerOrAdmin = (req, res, next) => {
     </tbody>
     <tfoot>
     <tr>
-    <td colspan="2">Items Price:</td>
-    <td align="right"> $${order.itemsPrice.toFixed(2)}</td>
+    <td colspan="2">Prix ht du logement:</td>
+    <td align="right"> XOF${order.itemsPrice.toFixed(1)}</td>
     </tr>
     <tr>
     <td colspan="2">Prix de la taxe:</td>
-    <td align="right"> $${order.taxPrice.toFixed(2)}</td>
+    <td align="right"> XOF${order.taxPrice.toFixed(2)}</td>
     </tr>
     <tr>
-    <td colspan="2">Prix ht :</td>
-    <td align="right"> $${order.shippingPrice.toFixed(2)}</td>
+    <td colspan="2">Prix reduction :</td>
+    <td align="right"> XOF${order.shippingPrice.toFixed(1)}</td>
     </tr>
     <tr>
     <td colspan="2"><strong>Prix de la Location:</strong></td>
-    <td align="right"><strong> $${order.totalPrice.toFixed(2)}</strong></td>
+    <td align="right"><strong> XOF${order.totalPrice.toFixed(1)}</strong></td>
     </tr>
     <tr>
     <td colspan="2">Methode de payment :</td>
     <td align="right">${order.paymentMethod}</td>
     </tr>
     </table>
-    <h2>Information locataire</h2>
+    <h2>Information sur le locataire</h2>
     <p>
     ${order.shippingAddress.fullName},<br/>
-    ${order.shippingAddress.address},<br/>
+    ${order.shippingAddress.adresse},<br/>
     ${order.shippingAddress.ville},<br/>
-    ${order.shippingAddress.paix},<br/>
+    ${order.shippingAddress.pays},<br/>
     ${order.shippingAddress.numero}<br/>
     </p>
     <hr/>

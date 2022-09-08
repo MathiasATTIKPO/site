@@ -134,19 +134,19 @@ export default function OrderScreen(props){
                   <li>
                     <div className="row">
                       <div>Loyer</div>
-                      <div>XOF {order.itemsPrice.toFixed(2)}</div>
+                      <div>XOF {order.itemsPrice.toFixed(1)}</div>
                     </div>
                   </li>
                   <li>
                     <div className="row">
                       <div>Reduction</div>   
-                      <div>XOF {order.shippingPrice.toFixed(2)}</div>
+                      <div>XOF {order.shippingPrice.toFixed(1)}</div>
                     </div>
                   </li>
                   <li>
                     <div className="row">
                       <div>Taxe</div>
-                      <div>XOF {order.taxPrice.toFixed(2)}</div>
+                      <div>XOF {order.taxPrice.toFixed(1)}</div>
                     </div>
                   </li>
                   <li>
@@ -155,7 +155,7 @@ export default function OrderScreen(props){
                         <strong>Total Location</strong>
                       </div>
                       <div> 
-                        <strong>XOF {order.totalPrice.toFixed(2)}</strong>
+                        <strong>XOF {order.totalPrice.toFixed(1)}</strong>
                       </div>
                     </div>
                   </li>

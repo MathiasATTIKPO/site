@@ -10,7 +10,7 @@ export default function ProductEditScreen(props) {
     const productId = props.match.params.id;
     const [ name , setName] = useState('');
     const [prix , setPrix] = useState('');
-    const [image , setImage] = useState('');
+    const [images , setImages] = useState('');
     const [category , setCategory] = useState('');
     const [countInStock , setCountInStock] = useState('');
     const [description , setDescription] = useState('');
@@ -32,7 +32,7 @@ export default function ProductEditScreen(props) {
         } else {
           setName(product.name);
           setPrix(product.prix);
-          setImage(product.image);
+          setImages(product.images);
           setCategory(product.category);
           setCountInStock(product.countInStock);
           setDescription(product.description);
@@ -46,7 +46,7 @@ export default function ProductEditScreen(props) {
                 _id: productId,
                 name,
                 prix,
-                image,
+                images,
                 category,
                 countInStock,
                 description,
@@ -71,7 +71,7 @@ export default function ProductEditScreen(props) {
                 Authorization: `Bearer ${userInfo.token}`,
               },
             });
-            setImage(data);
+            setImages(data);
             setLoadingUpload(false);
           } catch (error) {
             setErrorUpload(error.message);
@@ -92,11 +92,11 @@ export default function ProductEditScreen(props) {
             ) : (
                     <>
                         <div>
-                            <label htmlFor="name">Name</label>
+                            <label htmlFor="name">Nom</label>
                             <input
                                 id="name"
                                 type="text"
-                                placeholder="Enter name"
+                                placeholder="Entrez le nom"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                             ></input>
@@ -106,7 +106,7 @@ export default function ProductEditScreen(props) {
                             <input
                                 id="prix"
                                 type="text"
-                                placeholder="Enter price"
+                                placeholder="Entrez le prix"
                                 value={prix}
                                 onChange={(e) => setPrix(e.target.value)}
                             ></input>
@@ -116,9 +116,9 @@ export default function ProductEditScreen(props) {
                             <input
                                 id="image"
                                 type="text"
-                                placeholder="Enter image"
-                                value={image}
-                                onChange={(e) => setImage(e.target.value)}
+                                placeholder="Entrez l'image"
+                                value={images}
+                                onChange={(e) => setImages(e.target.value)}
                             ></input>
                         </div>
                         <div>
@@ -126,7 +126,7 @@ export default function ProductEditScreen(props) {
                             <input
                                 type="file"
                                 id="imageFile"
-                                label="Choose Image"
+                                label="Choisissez l'image"
                                 onChange={uploadFileHandler}
                             ></input>
                                {loadingUpload && <LoadingBox></LoadingBox>}

@@ -23,6 +23,7 @@ export default function OrderHistoryScreen(props) {
                 <thead> 
                     <tr>
                         <th>DATE</th>
+                        <th>Email</th>
                         <th>LOYER</th>
                         <th>PAYER</th>
                         <th>OCCUPER</th>
@@ -33,6 +34,7 @@ export default function OrderHistoryScreen(props) {
                     {orders.map((order) => (
                         <tr key={order._id}>
                             <td>{order.createdAt.substring(0 , 10)}</td>
+                            <td>{order.user.email}</td>
                             <td>{order.totalPrice.toFixed(0)}</td>
                             <td>{order.isPaid ? order.paidAt.substring(0, 10):'NON'}</td>
                             <td>{order.busy ? order.busy:'NON'}</td>

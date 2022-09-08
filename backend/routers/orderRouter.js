@@ -151,11 +151,34 @@ orderRouter.post('/' ,
                 taxPrice : req.body.taxPrice,
                 totalPrice : req.body.totalPrice,
                 shippingPrice : req.body.shippingPrice,
-                user : req.user._id ,
+                user : req.user._id,
+                userMail: req.user.email,
+                userName :req.user.name,
+
             });
-            const createdOrder = await order.save();
+            const createdOrder = await order.save();  
+            const email = `${order.userMail}`;
+            
+            mailgun()
+            .messages()
+            .send(
+              {
+              from: 'LOCALOLI <localoli@sandbox5faf888782fa4f3382a9e3e8e9117bd3.mailgun.org>',
+              to: `${order.userName} <${order.userMail}>`,
+              subject: `Nouvelle Location   ${order._id}`,
+              html: payOrderEmailTemplate(order),
+            },
+            (error, body) => {
+              if (error) {
+                console.log(error);
+                console.log(email);
+              } else {
+                console.log(body);
+              }
+            }
+            );
             res.status(201).send({
-                message:'New Order created' , order :createdOrder});
+                message:'New Order created' , order : createdOrder});
         }
     })
 );
@@ -174,19 +197,20 @@ orderRouter.put('/:id/pay' ,
                 email_adress : req.body.email_adress ,
             };
             const updateOrder = await order.save();
-
+            const email = `${order.userMail}`
             mailgun()
             .messages()
             .send(
               {
-              from: 'LOCALOLI <localoli@localoli.com>',
-              to: `${order.user.name} <${order.user.email}>`,
-              subject: `Nouvelle Location ${order._id}`,
-              html: payOrderEmailTemplate(order),
+                from: 'LOCALOLI <localoli@sandbox5faf888782fa4f3382a9e3e8e9117bd3.mailgun.org>',
+                to: `${order.userName} <${order.userMail}>`,
+                subject: `Nouvelle Location ${order._id}`,
+                html: payOrderEmailTemplate(order),
             },
             (error, body) => {
               if (error) {
                 console.log(error);
+                console.log(email);
               } else {
                 console.log(body);
               }
