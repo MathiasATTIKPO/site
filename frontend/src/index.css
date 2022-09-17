@@ -10,9 +10,11 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-#root{
-  height:100% ;
+
+#root {
+  height: 100%;
 }
+
 .grid-container{
   display: grid;
   grid-template-areas: 
@@ -270,39 +272,21 @@ h2{
 
 /* Search */
 
-.search input {
-  
-  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+/* Search */
+.search button {
+  border-radius: 0 0.5rem 0.5rem 0;
   border-right: none;
-  margin-left: 0rem;
-  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+.search input {
+  border-radius: 0.5rem 0 0 0.5rem;
+  border-right: none;
+  margin-left: 0.5rem;
 }
 .active {
   font-weight: bold;
 }
 
-@media only screen and (max-width: 768px) {
-  /* For mobile phones: */  
-  a.brand::first-letter{
-    width: 39px;
-  }
-
-  .search input{
-    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
-    border-right: none;
-    margin-right: 0.5rem;
-    width: auto;
-   
-  }
-
-
-  header {
-    width: auto !important;
-    justify-content: auto;
-    padding: auto;
-  }
-  
-}
 
 /*table*/
 

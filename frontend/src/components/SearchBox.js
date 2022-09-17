@@ -20,10 +20,8 @@ export default function SearchBox(props) {
         <input
           type="text"
           name="q"
-          id="q"
-          size="10"
+          id="q" 
           onChange={(e) => setName(e.target.value)}
-         
           placeholder=" recherche..."
           aria-label=" recherche..."
         ></input>
