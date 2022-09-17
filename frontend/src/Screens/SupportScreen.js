@@ -8,7 +8,7 @@ let allMessages = [];
 let allSelectedUser = {};
 const ENDPOINT =
   window.location.host.indexOf('localhost') >= 0
-    ? 'http://127.0.0.1:5000'
+    ? 'http://localoli.herokuapp.com'
     : window.location.host;
 
 export default function SupportScreen() {
