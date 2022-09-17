@@ -35,8 +35,8 @@ export default function PlaceOrderScreen(props){
     return(
       <div>
           <CheckOutStep step1 step2 step3 step4 ></CheckOutStep>
-          <div className="row top">
-            <div className="col-2">
+          <div className="placeorder">
+            <div className="placeorder-info">
               <ul>
                 <li>
                   <div className="offre offre-body">

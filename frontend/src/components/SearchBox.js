@@ -21,9 +21,8 @@ export default function SearchBox(props) {
           type="text"
           name="q"
           id="q" 
+          size="10"
           onChange={(e) => setName(e.target.value)}
-          placeholder=" recherche..."
-          aria-label=" recherche..."
         ></input>
         <button className="primary" type="submit">
           <i className="fa fa-search"></i>

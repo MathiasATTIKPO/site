@@ -73,23 +73,23 @@ function App()  {
                 <Link className="brand" to="/">LOCALOLI</Link>
             </div>
             <div>
-            <Route
-              render={({ history }) => (
-                <SearchBox history={history}></SearchBox>
-              )}
-            ></Route>
-          </div>
-          <div>
+              <Route
+                render={({ history }) => (
+                  <SearchBox history={history}></SearchBox>
+                )}
+              ></Route>
+            </div>
+            <div>
                 <Link to="/cart"> 
-                <i className="fa fa-shopping-cart" aria-hidden="true"></i>  
-                {cartItems.length > 0 && (
-                    <span className ="badge">{cartItems.length}</span>
-                )
-                }
+                  <i className="fa fa-shopping-cart" aria-hidden="true"></i>  
+                    {cartItems.length > 0 && (
+                      <span className ="badge">{cartItems.length}</span>
+                      )
+                    }
                 </Link>
                 {userInfo ?(
                   <div className="dropdown">
-                    <Link to="#">{userInfo.name} <i class="fa fa-user-circle" aria-hidden="true"></i>{' '}</Link> 
+                    <Link to="#">{userInfo.name} <i className="fa fa-user-circle" aria-hidden="true"></i>{' '}</Link> 
                     <ul className="dropdown-content">
                       <li>
                         <Link to="/profile">Profile</Link>

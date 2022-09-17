@@ -31,42 +31,39 @@ export default function SigninScreen(props) {
   return (
     <div>
       <form className="form" onSubmit={submitHandler}>
-        <div>
-          <h1>Identification</h1>
-        </div>
+        
+        <ul className="form-container">
+        <li>
+          <h2>S'identifier</h2>
+        </li>
         {loading && <LoadingBox></LoadingBox>}
         {error && <MessageBox variant="danger">{error}</MessageBox>}
-        <div>
-          <input
-            type="email"
-            id="email"
-            placeholder="Entrez votre email"
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
-        </div>
-        <div>
-          <input
-            type="password"
-            id="password"
-            placeholder="Entrez votre mots de Passes"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          ></input>
-        </div>
-        <div>
-          <label />
-          <button className="primary" type="submit">
-            Connexion
-          </button>
-        </div>
-        <div>
-          <label />
-          <div>
+        <li>
+          <label htmlFor="email">
+            Email
+          </label>
+          <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)}>
+          </input>
+        </li>
+        <li>
+          <label htmlFor="password">Mots de Passes</label>
+          <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}>
+          </input>
+        </li>
+        <li>
+          <button type="submit" className="button primary">S'identifier</button>
+        </li>
+        <li>
            Nouveau utilisateur?{' '}
             <Link to={`/register?redirect=${redirect}`}>
               Creer mon compte
             </Link>
+        </li>
+      </ul>
+        <div>
+          <label />
+          <div>
+         
           </div>
         </div>
       </form>

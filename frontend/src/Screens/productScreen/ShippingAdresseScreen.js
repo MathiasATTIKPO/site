@@ -37,33 +37,34 @@ export default function ShippingAdresseScreen (props){
         <div>
             <CheckOutStep step1 step2></CheckOutStep>
             <form className="form" onSubmit={submitHandler}>
-                <div>
-                    <h1> Shipping Adresse</h1>
-                </div>
-                <div>
-                    <label htmlFor="fullName">Nom complet</label>
-                    <input type="text" id="fullName" placeholder="Nom Complet" required value={fullName} onChange={(e) => setFullName(e.target.value)} ></input>
-                </div>
-                <div>
-                    <label htmlFor="adresse">Adresse</label>
-                        <input type="text" id="adresse" placeholder="Entrez votre Adresse"  required value={adresse} onChange={(e) => setAdresse(e.target.value)} ></input>
-                </div>
-                <div>
-                    <label htmlFor="ville">Ville</label>
-                        <input type="text" id="ville" placeholder="Entrez votre ville" required  value={ville} onChange={(e) => setVille(e.target.value)} ></input>
-                </div>
-                <div>
-                    <label htmlFor="country">Votre Pays</label>
-                        <input type="text" id="country" placeholder="Entrez le pays"  required value={pays} onChange={(e) => setPays(e.target.value)} ></input>
-                </div>
-                <div>
-                    <label htmlFor="telephone">Numero</label>
-                        <input type="text" id="telephone" placeholder="numero" required value={numero} onChange={(e) => setNumero(e.target.value)} ></input>
-                </div>
-                <div>
-                    <label />
-                    <button className="primary" type="submit">Continue</button>
-                </div>
+                <ul className="form-container">
+                    <li>
+                        <h2>Shipping</h2>
+                    </li>
+                    <li>
+                        <label htmlFor="fullName">Nom complet</label>
+                        <input type="text" id="fullName"  required value={fullName} onChange={(e) => setFullName(e.target.value)} ></input>      
+                    </li>
+                    <li>
+                        <label htmlFor="adresse">Adresse</label>
+                        <input type="text" id="adresse"  required value={adresse} onChange={(e) => setAdresse(e.target.value)} ></input>                
+                    </li>
+                    <li>
+                        <label htmlFor="ville">Ville</label>
+                        <input type="text" id="ville"  required  value={ville} onChange={(e) => setVille(e.target.value)} ></input>
+                    </li>
+                    <li>
+                        <label htmlFor="country">Votre Pays</label>
+                        <input type="text" id="country"  required value={pays} onChange={(e) => setPays(e.target.value)} ></input>
+                    </li>
+                    <li>
+                        <label htmlFor="telephone">Numero</label>
+                        <input type="text" id="telephone" required value={numero} onChange={(e) => setNumero(e.target.value)} ></input>
+                    </li>
+                    <li>
+                        <button type="submit" className="primary">Continue</button>
+                    </li>
+                </ul>
             </form>
         </div>
     );

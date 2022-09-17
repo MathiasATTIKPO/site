@@ -22,7 +22,7 @@ export default function RegisterScreen(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     if(password !== confirmPassword){
-      alert("Password and Confirm Password are not matching");
+      alert("Le mots de passe  et  Confirme mots de passes ne sont pas les même");
     }
     else{
      
@@ -39,66 +39,63 @@ export default function RegisterScreen(props) {
   return (
     <div>
       <form className="form" onSubmit={submitHandler}>
-        <div>
-          <h1>Creer un nouveau compte</h1>
-        </div>
-        {loading && <LoadingBox></LoadingBox>}
-        {error && <MessageBox variant="danger">{error}</MessageBox>}
-        <div>
+      <ul className="form-container">
+        <li>
+          <h2> Creer un nouveau compte</h2>
+        </li>
+        
+          {loading && <LoadingBox></LoadingBox>}
+          {error && <MessageBox variant="danger">{error}</MessageBox>}
+        
+        <li>
           <label htmlFor="name">Nom</label>
           <input
             type="text"
             id="name"
-            placeholder="Entrez votre "
             required
             onChange={(e) => setName(e.target.value)}
           ></input>
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
+        </li>
+        <li>
+        <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
-            placeholder="Entrez votre  email"
             required
             onChange={(e) => setEmail(e.target.value)}
           ></input>
-        </div>
-        <div>
-          <label htmlFor="password">Mots de Passes</label>
+        </li>
+        <li>
+        <label htmlFor="password">Mots de Passes</label>
           <input
             type="password"
             id="password"
-            placeholder="Entrez le Mots de Passes"
             required
             onChange={(e) => setPassword(e.target.value)}
           ></input>
-        </div>
-        <div>
-          <label htmlFor="confirmPassword">Confirmez le Mots de Passes</label>
+        </li>
+        <li>
+        <label htmlFor="confirmPassword">Confirmez le Mots de Passes</label>
           <input
             type="password"
             id="confirmPassword "
-            placeholder="Confirmez le Mots de Passes"
             required
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></input>
-        </div>
-        <div>
-          <label />
+        </li>
+        <li>
+        <label />
           <button className="primary" type="submit">
               S'inscrire
           </button>
-        </div>
-        <div>
-          <label />
-          <div>
-            Vous avez déja un compte?{' '}
+        </li>
+        <li>
+        Vous avez déja un compte?{' '}
             <Link to={`/signin?redirect=${redirect}`}>
               Se connecter
             </Link>
-          </div>
-        </div>
+        </li>
+      </ul>
       </form>
     </div>
   );
