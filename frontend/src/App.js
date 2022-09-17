@@ -211,7 +211,7 @@ function App()  {
         </main>
         <footer className="row center">
           {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo} />}
-          <div>TOUTS LES DROITS SONT RESERVERS</div>{' '}
+          <div>DROITS RESERVERS</div>{' '}
         </footer>
       </div>
     </BrowserRouter>
