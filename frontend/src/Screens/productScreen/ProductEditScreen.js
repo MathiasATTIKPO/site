@@ -60,7 +60,7 @@ export default function ProductEditScreen(props) {
     const { userInfo } = userSignin;
     
     const uploadFileHandler= async (e)=>{
-        const file = e.target.files[0];
+        const file = e.target.files[5];
         const bodyFormData = new FormData();
         bodyFormData.append('image', file);
         setLoadingUpload(true);

@@ -25,6 +25,8 @@ export default function ProductListScreen(props) {
   const productDelete = useSelector(state => state.productDelete);
   const { loading :loadingDelete , error: errorDelete , success: successDelete}= productDelete;
   const dispatch = useDispatch();
+  /***/
+  
   useEffect(() => {
     if (successCreate) {
       dispatch({ type: PRODUCT_CREATE_RESET });
@@ -61,7 +63,7 @@ export default function ProductListScreen(props) {
     <div>
       <div className="row">
         <h1> Logement</h1>
-        <button type="button" className="primary" onClick={createHandler}>Ajouter logement</button>
+        <button type="button" className="primary" onClick={createHandler}>Ajouter un logement</button>
       </div>
       {loadingCreate && <LoadingBox></LoadingBox>}
       {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}

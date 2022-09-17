@@ -30,6 +30,8 @@ import LoadingBox from './components/LoadingBox';
 import MessageBox from './components/MessageBox';
 import SearchScreen from './Screens/SearchScreen';
 import DashboardScreen from './Screens/DashboardScreen';
+import ChatBox from './components/ChatBox';
+import SupportScreen from './Screens/SupportScreen';
 
 
 
@@ -68,7 +70,7 @@ function App()  {
               >
               <i className="fa fa-bars"></i>
               </button>
-                <Link className="brand" to="/"> LOCA LOLI  </Link>
+                <Link className="brand" to="/">LOCA LOLI</Link>
             </div>
             <div>
             <Route
@@ -93,7 +95,7 @@ function App()  {
                         <Link to="/profile">Profile</Link>
                       </li>
                       <li>
-                        <Link to="/orderHistory"> Historiques</Link>
+                        <Link to="/orderHistory">Historiques</Link>
                       </li>
                       <li>
                         <Link to="/" onClick={signoutHandler}>Se deconnecter</Link>
@@ -120,10 +122,13 @@ function App()  {
                         <Link to="/productlist">Logements</Link>
                       </li>
                       <li>
-                          <Link to="/ordersList">Loactions</Link>
+                          <Link to="/ordersList">Locations</Link>
                       </li>
                       <li>
                         <Link to="/userList"> Utilisateurs</Link>
+                      </li>
+                      <li>
+                        <Link to="/support">Support</Link>
                       </li>
                     </ul>
                   </div>)}
@@ -197,6 +202,7 @@ function App()  {
             <AdminRoute path='/userList' component={UserListScreen} exact></AdminRoute>
             <AdminRoute path="/user/:id/edit" component={UserEditScreen}></AdminRoute>
             <AdminRoute path="/dashboard" component={DashboardScreen}></AdminRoute>
+            <AdminRoute path="/support" component={SupportScreen}></AdminRoute>
             <SellerRoute path='/productlist/seller/:seller?' component={ProductListScreen}></SellerRoute>
             <SellerRoute path='/orderlist/seller' component={OrderListScreen}></SellerRoute>
             <Route path="/productAdmin/:id/edit" component={ProductEditScreen} ></Route>
@@ -204,11 +210,10 @@ function App()  {
             <Route path='/' component={HomeScreen} exact></Route>
         </main>
         <footer className="row center">
-          {userInfo && !userInfo.isAdmin /* && <ChatBox userInfo={userInfo} />*/
-          }
-           <h6> TOUTS LES DROITS SONT RESERVERS</h6> 
+          {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo} />}
+          <div>All right reserved</div>{' '}
         </footer>
-    </div>
+      </div>
     </BrowserRouter>
   );
 }
