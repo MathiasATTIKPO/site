@@ -113,12 +113,12 @@ export default function SupportScreen() {
   return (
     <div className="row top full-container">
       <div className="col-1 support-users">
-        {users.filter((x) => x._id !== userInfo._id).length === 0 && (
+        {users.filter((x) => x._id !== userInfo.id).length === 0 && (
           <MessageBox>No Online User Found</MessageBox>
         )}
         <ul>
           {users
-            .filter((x) => x._id !== userInfo._id)
+            .filter((x) => x._id !== userInfo.id)
             .map((user) => (
               <li
                 key={user._id}
@@ -164,7 +164,7 @@ export default function SupportScreen() {
                   type="text"
                   placeholder="type message"
                 />
-                <button type="submit">Send</button>
+                <button type="submit">Envoyer</button>
               </form>
             </div>
           </div>

@@ -64,7 +64,7 @@ export default function ChatBox(props) {
                     body:messageBody,
                     name:userInfo.name,
                     isAdmin:userInfo.isAdmin,
-                    _id:userInfo._id,
+                    _id:userInfo.id,
                 });
             } , 1000 );
         }
