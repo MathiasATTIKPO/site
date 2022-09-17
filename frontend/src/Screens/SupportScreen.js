@@ -34,7 +34,7 @@ export default function SupportScreen() {
       const sk = socketIOClient(ENDPOINT);
       setSocket(sk);
       sk.emit('onLogin', {
-        _id: userInfo._id,
+        _id: userInfo.id,
         name: userInfo.name,
         isAdmin: userInfo.isAdmin,
       });
@@ -73,7 +73,7 @@ export default function SupportScreen() {
         setMessages(allMessages);
       });
     }
-  }, [messages, socket, users]);
+  }, [messages, socket, userInfo.id, userInfo.isAdmin, userInfo.name, users]);
 
   const selectUser = (user) => {
     allSelectedUser = user;

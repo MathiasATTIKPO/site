@@ -15,16 +15,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}))
 dotenv.config();
 
-/*
-Mongoose.connect(process.env.MONGODB_URL || 
-//'mongodb+srv://mathiasattikpo:Mathias1405@site.1ha1b.mongodb.net/SITE'
-'mongodb://localhost:27017/SITE'
-,{
-    userNewUrlParser: true ,
-    useUnifiedTopology:true ,
-    useCreateIndex:true ,
-});*/
-
 Mongoose
   .connect(process.env.MONGODB_URL|| 
     //'mongodb://localhost:27017/SITE'
@@ -56,10 +46,10 @@ app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
 );
 
-
+/*
  app.get('/',(req , res) =>{
      res.send('Serveur pret');
- });
+ });*/
 
 app.use((err, req, res , next) =>{
     res.status(500).send({message: err.message});

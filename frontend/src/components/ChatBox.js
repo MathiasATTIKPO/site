@@ -30,7 +30,7 @@ export default function ChatBox(props) {
         }
         if(socket){
             socket.emit('onLogin' , {
-                _id : userInfo._id ,
+                _id : userInfo.id ,
                 name: userInfo.name,
                 isAdmin : userInfo.isAdmin,
             });
@@ -41,7 +41,7 @@ export default function ChatBox(props) {
                 }]);
             });
         }
-    } , [messages, isOpen, socket, userInfo._id, userInfo.name, userInfo.isAdmin]);
+    } , [messages, isOpen, socket, userInfo.id, userInfo.name, userInfo.isAdmin]);
 
     const supportHandler = () =>{
         setIsOpen(true);
