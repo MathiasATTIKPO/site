@@ -3,8 +3,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import socketIOClient from 'socket.io-client';
 
 const ENDPOINT =
-    window.location.host.indexOf('localhost') >=0
-    ? 'http://localoli.herokuapp.com'
+    window.location.host.indexOf('localhost') >= 0
+    ? 'http://127.0.0.1:5000'
     : window.location.host;
 
 
@@ -99,9 +99,9 @@ export default function ChatBox(props) {
                             value={messageBody}
                             onChange={(e) => setMessageBody(e.target.value)}
                             type="text"
-                            placeholder="type message"
+                            placeholder="Saisir un  message"
                         />
-              <button type="submit">Envoyer</button>
+              <button type="submit" className="">Envoyer</button>
             </form>
                 </div>
             </div>
