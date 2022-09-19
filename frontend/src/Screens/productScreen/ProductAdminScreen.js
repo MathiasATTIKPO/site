@@ -141,10 +141,11 @@ export default function ProductScreen(props){
               <li>
                 {userInfo ? (
                   <form className="form" onSubmit={submitHandler}>
-                    <div>
-                      <h2>Rédiger un avis client</h2>
-                    </div>
-                    <div>
+                    <ul className="form-container">
+                      <li>
+                        <h2>Rédiger un avis client</h2>
+                      </li>
+                    <li>
                       <label htmlFor="rating">Note</label>
                       <select
                         id="rating"
@@ -158,29 +159,30 @@ export default function ProductScreen(props){
                         <option value="4">4- Très bien</option>
                         <option value="5">5- Excelent</option>
                       </select>
-                    </div>
-                    <div>
+                    </li>
+                    <li>
                       <label htmlFor="comment">Commentaire</label>
                       <textarea
                         id="comment"
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                       ></textarea>
-                    </div>
-                    <div>
+                    </li>
+                    <li>
                       <label />
                       <button className="primary" type="submit">
                         Envoyer
                       </button>
-                    </div>
-                    <div>
+                    </li>
+                    <li>
                       {loadingReviewCreate && <LoadingBox></LoadingBox>}
                       {errorReviewCreate && (
                         <MessageBox variant="danger">
                           {errorReviewCreate}
                         </MessageBox>
                       )}
-                    </div>
+                    </li>
+                  </ul>
                   </form>
                 ) : (
                   <MessageBox>

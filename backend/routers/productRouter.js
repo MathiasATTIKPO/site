@@ -114,9 +114,9 @@ productRouter.post('/',
         const product = new Product({
           name: 'sample name ' + Date.now(),
           seller: req.user._id,
-          seller: req.user.nom,
           image: '/images/p1.jpg',
-          prix: 0,
+          nbreChbr:0,
+          prix: 1,
           category: 'sample category',
           countInStock: 'libre',
           rating: 0,
@@ -138,7 +138,8 @@ productRouter.put(
       if (product) {
         product.name = req.body.name;
         product.prix = req.body.prix;
-        product.images = req.body.image;
+        product.image = req.body.image;
+        product.nbreChbr = req.body.nbreChbr;
         product.category = req.body.category;
         product.countInStock = req.body.countInStock;
         product.description = req.body.description;

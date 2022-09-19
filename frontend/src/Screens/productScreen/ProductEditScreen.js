@@ -10,7 +10,8 @@ export default function ProductEditScreen(props) {
     const productId = props.match.params.id;
     const [ name , setName] = useState('');
     const [prix , setPrix] = useState('');
-    const [images , setImages] = useState('');
+    const [nbreChbr, setNbreChbr] = useState('');
+    const [image , setImages] = useState('');
     const [category , setCategory] = useState('');
     const [countInStock , setCountInStock] = useState('');
     const [description , setDescription] = useState('');
@@ -32,7 +33,8 @@ export default function ProductEditScreen(props) {
         } else {
           setName(product.name);
           setPrix(product.prix);
-          setImages(product.images);
+          setImages(product.image);
+          setNbreChbr(product.nbreChbr);
           setCategory(product.category);
           setCountInStock(product.countInStock);
           setDescription(product.description);
@@ -46,7 +48,8 @@ export default function ProductEditScreen(props) {
                 _id: productId,
                 name,
                 prix,
-                images,
+                nbreChbr,
+                image,
                 category,
                 countInStock,
                 description,
@@ -60,7 +63,7 @@ export default function ProductEditScreen(props) {
     const { userInfo } = userSignin;
     
     const uploadFileHandler= async (e)=>{
-        const file = e.target.files[5];
+        const file = e.target.files[0];
         const bodyFormData = new FormData();
         bodyFormData.append('image', file);
         setLoadingUpload(true);
@@ -82,46 +85,53 @@ export default function ProductEditScreen(props) {
   return (
     <div>
         <form className="form" onSubmit={submitHandler}>
-            <div>
-                <h1> Modifier Logment {productId}</h1>
-            </div>
-            { updateLoading && <LoadingBox></LoadingBox>}
-            {updateError && <MessageBox variant="danger">{updateError}</MessageBox>}
-            {loading ? (<LoadingBox></LoadingBox>
-            ) : error ? (<MessageBox variant="danger">{error}</MessageBox>
-            ) : (
+            <ul className="form-container">
+                <li>
+                    <h2> Modifier Logment {productId}</h2>
+                </li>
+                { updateLoading && <LoadingBox></LoadingBox>}
+                {updateError && <MessageBox variant="danger">{updateError}</MessageBox>}
+                {loading ? (<LoadingBox></LoadingBox>
+                ) : error ? (<MessageBox variant="danger">{error}</MessageBox>
+                ) : (
                     <>
-                        <div>
+                    <li>
                             <label htmlFor="name">Nom</label>
                             <input
                                 id="name"
                                 type="text"
-                                placeholder="Entrez le nom"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                             ></input>
-                        </div>
-                        <div>
+                        </li>
+                        <li>
                             <label htmlFor="prix">Prix</label>
                             <input
                                 id="prix"
                                 type="text"
-                                placeholder="Entrez le prix"
                                 value={prix}
                                 onChange={(e) => setPrix(e.target.value)}
                             ></input>
-                        </div>
-                        <div>
+                        </li>
+                        <li>
                             <label htmlFor="image">Image</label>
                             <input
                                 id="image"
                                 type="text"
-                                placeholder="Entrez l'image"
-                                value={images}
+                                value={image}
                                 onChange={(e) => setImages(e.target.value)}
                             ></input>
-                        </div>
-                        <div>
+                        </li>
+                        <li>
+                            <label htmlFor="nbreChbr">Nombre de Chambre</label>
+                            <input
+                                id="nbreChbr"
+                                type="text"
+                                value={nbreChbr}
+                                onChange={(e) => setNbreChbr(e.target.value)}
+                            ></input>
+                        </li>
+                        <li>
                             <label htmlFor="imageFile">Image File</label>
                             <input
                                 type="file"
@@ -132,48 +142,51 @@ export default function ProductEditScreen(props) {
                                {loadingUpload && <LoadingBox></LoadingBox>}
                                 {errorUpload && (
                                 <MessageBox variant="danger">{errorUpload}</MessageBox>)}     
-                        </div>
-                        <div>
+                        </li>
+                        <li>
                             <label htmlFor="category">categories</label>
-                            <input
+                            <select
                                 id="category"
-                                type="text"
-                                placeholder="Enter category"
                                 value={category}
-                                onChange={(e) => setCategory(e.target.value)}
-                            ></input>
-                        </div>
-                        <div>
+                                 onChange={(e) => setCategory(e.target.value)}
+                                >
+                                <option value="">Select...</option>
+                                <option value="Villa">Villa</option>
+                                <option value="Appartement">Appartement</option>
+                                <option value="2 Chambres">2 Chambres</option>
+                                <option value="Chambre">Chambre</option>
+                                <option value="Maison">Maison</option>
+                            </select>
+                        </li>
+                        <li>
                             <label htmlFor="countInStock">Disponibilité</label>
                             <input
                                 id="countInStock"
                                 type="text"
-                                placeholder="Enter countInStock"
                                 value={countInStock}
                                 onChange={(e) => setCountInStock(e.target.value)}
                             ></input>
-                        </div>
-                        <div>
+                        </li>
+                        <li>
                             <label htmlFor="description">Description</label>
                             <textarea
                                 id="description"
                                 rows="3"
                                 type="text"
-                                placeholder="Enter description"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                             ></textarea>
-                        </div>
-                        <div>
+                        </li>
+                        <li>
                             <label></label>
                             <button className="primary" type="submit">
-                                Update
+                                Modifier
                             </button>
-                        </div>
+                        </li>
                     </>
                 )
             }
-
+            </ul>
         </form>
 
     </div>
