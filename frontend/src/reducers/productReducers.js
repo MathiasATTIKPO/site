@@ -23,7 +23,10 @@
     PRODUCT_UPDATE_FAIL, 
     PRODUCT_UPDATE_REQUEST,
     PRODUCT_UPDATE_RESET,
-    PRODUCT_UPDATE_SUCCESS} = require("../constant/productConstante");
+    PRODUCT_UPDATE_SUCCESS,
+    PRODUCT_VILLE_LIST_SUCCESS,
+    PRODUCT_VILLE_LIST_REQUEST,
+    PRODUCT_VILLE_LIST_FAIL} = require("../constant/productConstante");
 
 export const productListReducer = (
     state ={ loading :true ,products: [] } ,
@@ -83,7 +86,25 @@ export const productCategoryListReducer = (
   }
 };
 
-export const productDetailsReducer = (state = { product: {},  loading: true }, action) => {
+export const  productVilleListReducer = (
+  state = { loading: true, products: [] },
+  action
+) => {
+  switch (action.type) {
+    case PRODUCT_VILLE_LIST_REQUEST :
+      return { loading : true};
+    case PRODUCT_VILLE_LIST_SUCCESS:
+      return { loading : false, villes: action.payload};
+    case PRODUCT_VILLE_LIST_FAIL:
+      return { loading : false, error: action.payload};
+    default:
+      return state;
+  }
+};
+
+export const productDetailsReducer = (
+  state = { product: {},  loading: true }, 
+  action) => {
   switch (action.type) {
     case PRODUCT_DETAILS_REQUEST:
       return { loading: true };

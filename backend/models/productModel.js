@@ -22,6 +22,7 @@ const productSchema = new mongoose.Schema({
     seller: { type: mongoose.Schema.Types.ObjectID, ref: 'User' },
     category: { type: String, required: true},
     image:{ type: String, required: true},
+    ville:{ type: String, required: true},
     nbreChbr: { type:Number, required: true},
     prix: { type: Number, required: true},
     countInStock: { type: String, required: true},

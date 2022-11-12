@@ -54,8 +54,9 @@ export default function SigninScreen(props) {
           <button type="submit" className="button primary">S'identifier</button>
         </li>
         <li>
-           Nouveau utilisateur?{' '}
+          
             <Link to={`/register?redirect=${redirect}`}>
+            Nouveau utilisateur?   
               Creer mon compte
             </Link>
         </li>

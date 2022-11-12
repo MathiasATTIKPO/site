@@ -12,6 +12,7 @@ export default function SearchScreen(props) {
     const {
         name = 'all',
         category = 'all',
+        ville  = 'all',
         min =0,
         max =0 ,
         rating = 0,
@@ -24,24 +25,28 @@ export default function SearchScreen(props) {
 
     const productCategoryList = useSelector( (state) =>state.productCategoryList);
     const {loading : loadingCategories , error: errorCategories , categories} = productCategoryList ;
+    const productVilleList = useSelector( (state) => state.productVilleList);
+    const {loading : loadingVille , error: errorVille , villes} = productVilleList ;
     useEffect(() => {
         dispatch( listProducts({
             pageNumber,
             name: name !== 'all' ? name :'',
             category: category !=='all' ? category :'',
+            ville: ville !== 'all' ?ville :'',
             min , max,rating , order
         }))
-    }, [category , dispatch , max , min , name , order , rating , pageNumber]);
+    }, [category , ville , dispatch , max , min , name , order , rating , pageNumber]);
 
     const getFilterUrl = (filter) => {
         const filterPage = filter.page || pageNumber;
         const filterName = filter.name || name;
         const filterCategory = filter.category || category;
+        const filterVille    = filter.ville ||ville;
         const sortOrder = filter.order || order;
         const filterRating = filter.rating || rating;
         const filterMin = filter.min ? filter.min : filter.min === 0 ? 0 : min;
         const filterMax = filter.max ? filter.max : filter.max === 0 ? 0 : max;
-        return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
+        return `/search/category/${filterCategory}/${filterVille}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
       };
   return (
     <div>
@@ -54,7 +59,7 @@ export default function SearchScreen(props) {
                     <div>{products.lenght} Resultats</div>
                 )
             }
-            <di>
+            <div>
                 Sort by{''}
                 <select value={order} onChange={(e)=>{
                     props.history.push(getFilterUrl({order:e.target.value}));
@@ -64,7 +69,7 @@ export default function SearchScreen(props) {
                     <option value ="highest">Haut prix</option>
                     <option value ="toprated">Meilleur NOTE</option>
                 </select>
-            </di>
+            </div>
         </div>
         <div className="row top">
         <div className="col-1">
@@ -97,6 +102,35 @@ export default function SearchScreen(props) {
               </ul>
             )}
           </div>
+          <h3>Villes</h3>
+          <div>
+            {loadingVille ? (
+              <LoadingBox></LoadingBox>
+            ) : errorVille ? (
+              <MessageBox variant="danger">{errorVille}</MessageBox>
+            ) : (
+              <ul>
+                <li>
+                  <Link
+                    className={'all' === ville ? 'active' : ''}
+                    to={getFilterUrl({ ville: 'all' })}
+                  >
+                    Toutes les villes
+                  </Link>
+                </li>
+                {villes.map((c) => (
+                  <li key={c}>
+                    <Link
+                      className={c === ville ? 'active' : ''}
+                      to={getFilterUrl({ ville: c })}
+                    >
+                      {c}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
           <div>
             <h3>Prix</h3>
             <ul>
@@ -115,7 +149,7 @@ export default function SearchScreen(props) {
             </ul>
           </div>
           <div>
-            <h3>Avg. Customer Review</h3>
+            <h3>Appreciations</h3>
             <ul>
               {ratings.map((r) => (
                 <li key={r.name}>

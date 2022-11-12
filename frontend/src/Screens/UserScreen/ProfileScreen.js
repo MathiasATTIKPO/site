@@ -59,7 +59,9 @@ export default function ProfileScreen() {
   return (
     <div>
         <form className="form" onSubmit={submitHandler}>
-            <div>Profile Utilisateur</div>
+            <ul className="form-container">
+                <h2>Profile Utilisateur</h2>
+
                 {
                     loading ? (<LoadingBox></LoadingBox>): error ?(
                     <MessageBox variant="danger">{error}</MessageBox>)
@@ -73,87 +75,81 @@ export default function ProfileScreen() {
                             Profile Mise à Jour avec Succes
                         </MessageBox>
                         )}
-                         <div>
-                            <label htmlFor="name">Nom</label>
+                         <li>
+                            <label htmlFor="name">Nom *</label>
                             <input
                                 type="text"
                                 id="name"
-                                placeholder="Enter name"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                             ></input>
-                        </div>
-                        <div>
-                            <label htmlFor="email">Email</label>
+                        </li>
+                        <li>
+                            <label htmlFor="email">Email *</label>
                             <input
                                 type="email"
                                 id="email"
-                                placeholder="Enter email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             ></input>
-                        </div>
-                        <div>
-                            <label htmlFor="password">Mots de Passes</label>
+                        </li>
+                        <li>
+                            <label htmlFor="password">Mots de Passes *</label>
                             <input
                                 type="password"
                                 id="password"
-                                placeholder="Entrez Mots de Passes "
                                 onChange={(e) => setPassword(e.target.value)}
                             ></input>
-                        </div>
-                        <div>
-                            <label htmlFor="confirmPassword">Confirmé le  Mots de Passes</label>
+                        </li>
+                        <li>
+                            <label htmlFor="confirmPassword">Confirmé le  Mots de Passes *</label>
                             <input
                                 type="password"
                                 id="confirmPassword "
-                                placeholder="Confirmé le  Mots de Passes"
                                 onChange={(e) => setConfirmPassword(e.target.value)}                              
                             ></input>
-                        </div>
+                        </li>
                         {user.isSeller && (
               <>
                 <h2>Seller</h2>
-                <div>
+                <li>
                   <label htmlFor="sellerName">Nom</label>
                   <input
                     id="sellerName"
                     type="text"
-                    placeholder="Entrer le Nom"
                     value={sellerName}
                     onChange={(e) => setSellerName(e.target.value)}
                   ></input>
-                </div>
-                <div>
+                </li>
+                <li>
                   <label htmlFor="sellerLogo">Photo</label>
                   <input
                     id="sellerLogo"
                     type="text"
-                    placeholder="Enter Seller Logo"
                     value={sellerPhoto}
                     onChange={(e) => setSellerPhoto(e.target.value)}
                   ></input>
-                </div>
-                <div>
+                </li>
+                <li>
                   <label htmlFor="sellerDescription"> Description</label>
                   <input
                     id="sellerDescription"
                     type="text"
-                    placeholder="Enter Seller Description"
                     value={sellerDescription}
                     onChange={(e) => setSellerDescription(e.target.value)}
                   ></input>
-                </div>
+                </li>
               </>
             )}
-                        <div>
+                        <li>
                             <label />
                             <button className="primary" type="submit">
                                 Modifier
                             </button>
-                        </div>
+                        </li>
                     </>
                     )}
+            </ul>
         </form>
     </div>
   )

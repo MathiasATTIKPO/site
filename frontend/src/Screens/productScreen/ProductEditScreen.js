@@ -13,6 +13,7 @@ export default function ProductEditScreen(props) {
     const [nbreChbr, setNbreChbr] = useState('');
     const [image , setImages] = useState('');
     const [category , setCategory] = useState('');
+    const [ville , setVille] = useState('');
     const [countInStock , setCountInStock] = useState('');
     const [description , setDescription] = useState('');
     
@@ -36,6 +37,7 @@ export default function ProductEditScreen(props) {
           setImages(product.image);
           setNbreChbr(product.nbreChbr);
           setCategory(product.category);
+          setVille(product.ville);
           setCountInStock(product.countInStock);
           setDescription(product.description);
         }
@@ -51,6 +53,7 @@ export default function ProductEditScreen(props) {
                 nbreChbr,
                 image,
                 category,
+                ville,
                 countInStock,
                 description,
             })
@@ -63,7 +66,7 @@ export default function ProductEditScreen(props) {
     const { userInfo } = userSignin;
     
     const uploadFileHandler= async (e)=>{
-        const file = e.target.files[0];
+        const file = e.target.files[5];
         const bodyFormData = new FormData();
         bodyFormData.append('image', file);
         setLoadingUpload(true);
@@ -96,7 +99,7 @@ export default function ProductEditScreen(props) {
                 ) : (
                     <>
                     <li>
-                            <label htmlFor="name">Nom</label>
+                            <label htmlFor="name">Nom *</label>
                             <input
                                 id="name"
                                 type="text"
@@ -105,7 +108,7 @@ export default function ProductEditScreen(props) {
                             ></input>
                         </li>
                         <li>
-                            <label htmlFor="prix">Prix</label>
+                            <label htmlFor="prix">Prix *</label>
                             <input
                                 id="prix"
                                 type="text"
@@ -123,7 +126,7 @@ export default function ProductEditScreen(props) {
                             ></input>
                         </li>
                         <li>
-                            <label htmlFor="nbreChbr">Nombre de Chambre</label>
+                            <label htmlFor="nbreChbr">Nombre de Chambre *</label>
                             <input
                                 id="nbreChbr"
                                 type="text"
@@ -156,6 +159,25 @@ export default function ProductEditScreen(props) {
                                 <option value="2 Chambres">2 Chambres</option>
                                 <option value="Chambre">Chambre</option>
                                 <option value="Maison">Maison</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label htmlFor="ville">Ville</label>
+                            <select
+                                id="ville"
+                                value={ville}
+                                 onChange={(e) => setVille(e.target.value)}
+                                >
+                                <option value="">Select...</option>
+                                <option value="Lomé">Lomé</option>
+                                <option value="Atapkamé">Atapkamé</option>
+                                <option value="Kpalimé">Kpalimé</option>
+                                <option value="Sokodé">Sokodé</option>
+                                <option value="Aného">Aného</option>
+                                <option value="Kara">Kara</option>
+                                <option value="Niamtougou">Niamtougou</option>
+                                <option value="Dapaong">Dapaong</option>
+                                <option value="Tchamba">Tchamba</option>
                             </select>
                         </li>
                         <li>

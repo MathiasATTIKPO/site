@@ -21,7 +21,7 @@ export default function UserListScreen(props) {
     } , [dispatch , successDelete]);
 
     const deleteHandler=(user)=>{
-        if (window.confirm('Are you sure?')) {
+        if (window.confirm('Voulez vous vraiment supprimer cet utilisateur?')) {
             dispatch(deleteUser(user._id));
           }
     };
@@ -31,7 +31,7 @@ export default function UserListScreen(props) {
       {loadingDelete && <LoadingBox></LoadingBox>}
       {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
       {successDelete && (
-       <MessageBox variant="success">User Deleted Successfully</MessageBox>
+       <MessageBox variant="success">Utilisateur supprimer avec succes</MessageBox>
       )}
       {loading ? (
         <LoadingBox></LoadingBox>
@@ -63,14 +63,14 @@ export default function UserListScreen(props) {
                     className="small"
                     onClick={() => props.history.push(`/user/${user._id}/edit`)}
                   >
-                    Edit
+                    Modifier
                   </button>
                   <button
                     type="button"
                     className="small"
                     onClick={() => deleteHandler(user)}
                   >
-                    Delete
+                    Supprimer
                   </button>
                 </td>
               </tr>

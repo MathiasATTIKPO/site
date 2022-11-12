@@ -90,8 +90,9 @@ export default function RegisterScreen(props) {
           </button>
         </li>
         <li>
-        Vous avez déja un compte?{' '}
+        
             <Link to={`/signin?redirect=${redirect}`}>
+            Vous avez déja un compte?
               Se connecter
             </Link>
         </li>

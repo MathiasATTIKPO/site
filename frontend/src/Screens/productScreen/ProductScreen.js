@@ -90,6 +90,10 @@ export default function ProductScreen(props){
                             <p>{product.description} </p>
                         </li>
                         <li>
+                            ville:
+                            <p>{product.ville} </p>
+                        </li>
+                        <li>
                             <img 
                                 src={product.image}
                                 alt={product.name}

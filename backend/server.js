@@ -17,8 +17,8 @@ dotenv.config();
 
 Mongoose
   .connect(process.env.MONGODB_URL|| 
-    //'mongodb://localhost:27017/SITE'
-    'mongodb+srv://mathiasattikpo:Mathias1405@site.1ha1b.mongodb.net/SITE'
+    'mongodb://localhost:27017/SITE'
+    //'mongodb+srv://mathiasattikpo:Mathias1405@site.1ha1b.mongodb.net/SITE'
     )
   .then(() => {
     console.log('connected to db');

@@ -79,7 +79,7 @@ export default function DashboardScreen() {
                 
                 {summary.orders[0]
                   ? summary.orders[0].totalSales.toFixed(1)
-                  : 0}  OXF  
+                  : 0}  xof  
               </div>
             </li>
           </ul>

@@ -2,6 +2,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import socketIOClient from 'socket.io-client';
 
+//let allMessages = [];
+
 const ENDPOINT =
     window.location.host.indexOf('localhost') >= 0
     ? 'http://127.0.0.1:5000'
@@ -69,6 +71,8 @@ export default function ChatBox(props) {
             } , 1000 );
         }
     };
+
+    
     const closeHandler = () =>{
         setIsOpen(false);
     };

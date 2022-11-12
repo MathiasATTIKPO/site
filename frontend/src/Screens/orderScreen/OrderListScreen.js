@@ -81,7 +81,7 @@ export default function OrderListScreen(props) {
                                 className="small"
                                 onClick={() => deleteHandler(order)}
                             >
-                                Delete
+                                Supprimer
                             </button>
                         </td>
                     </tr>

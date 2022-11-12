@@ -91,7 +91,7 @@ export default function SupportScreen() {
   const submitHandler = (e) => {
     e.preventDefault();
     if (!messageBody.trim()) {
-      alert('Error. Please type message.');
+      alert('Erreur. Entrez un message.');
     } else {
       allMessages = [
         ...allMessages,
@@ -114,7 +114,7 @@ export default function SupportScreen() {
     <div className="row top full-container">
       <div className="col-1 support-users">
         {users.filter((x) => x._id !== userInfo.id).length === 0 && (
-          <MessageBox>No Online User Found</MessageBox>
+          <MessageBox>Aucun utilisateur connecter trouver</MessageBox>
         )}
         <ul>
           {users
@@ -149,7 +149,7 @@ export default function SupportScreen() {
               <strong>Chat with {selectedUser.name} </strong>
             </div>
             <ul ref={uiMessagesRef}>
-              {messages.length === 0 && <li>No message.</li>}
+              {messages.length === 0 && <li>Aucun  message.</li>}
               {messages.map((msg, index) => (
                 <li key={index}>
                   <strong>{`${msg.name}: `}</strong> {msg.body}

@@ -25,7 +25,7 @@ import CartScreen from './Screens/CartScreen';
 import SellerScreen from './Screens/SellerScreen';
 import HomeScreen from './Screens/HomeScreen';
 import ProductScreen from './Screens/productScreen/ProductScreen';
-import { listProductCategories } from './actions/productActions';
+import { listProductCategories, listProductVilles } from './actions/productActions';
 import LoadingBox from './components/LoadingBox';
 import MessageBox from './components/MessageBox';
 import SearchScreen from './Screens/SearchScreen';
@@ -48,14 +48,22 @@ function App()  {
   const signoutHandler = () => {
     dispatch(signout());
   };
+  const productVilleList = useSelector((state) => state.productVilleList);
   const productCategoryList = useSelector((state) => state.productCategoryList);
+
+  const{
+    loading: loadingVille,
+    error: errorVille,    
+    villes}= productVilleList;
   const {
     loading: loadingCategories,
     error: errorCategories,
     categories,
   } = productCategoryList;
+
+  
   useEffect(() => {
-    dispatch(listProductCategories());
+    dispatch(listProductCategories(), listProductVilles());
   }, [dispatch]);
 
   return (
@@ -70,7 +78,7 @@ function App()  {
               >
               <i className="fa fa-bars"></i>
               </button>
-                <Link className="brand" to="/">LOCALOLI</Link>
+                <Link className="brand" to="/">localoli</Link>
             </div>
             <div>
               <Route
@@ -131,7 +139,8 @@ function App()  {
                         <Link to="/support">Support</Link>
                       </li>
                     </ul>
-                  </div>)}
+                  </div>
+                  )}
                   {userInfo && userInfo.isSeller && (
                     <div className="dropdown">
                       <Link to="#admin">
@@ -145,9 +154,10 @@ function App()  {
                           <Link to="/orderlist/seller">Locations</Link>
                         </li>
                       </ul>
-                    </div>)}
-        </div>
-      </header>
+                    </div>
+                  )}
+            </div>
+        </header>
         <aside className={sidebarIsOpen ? 'open' : ''}>
           <ul className="categories">
             <li>
@@ -176,6 +186,29 @@ function App()  {
                 </li>
               ))
             )}
+            
+           
+          </ul>
+          <ul className="categories">
+            <li>
+              <strong>Villes</strong>
+            </li>
+            {loadingVille ?(
+              <LoadingBox></LoadingBox>):
+               errorVille ?(
+                <MessageBox variant="danger">{errorVille}</MessageBox>
+               ) : (
+                villes.map((c) =>(
+                  <li key={c}>
+                    <Link to={`/search/villes/${c}`}
+                    onClick={() => setSidebarIsOpen(false)}
+                    >
+                      {c}
+                    </Link>
+                  </li>
+                ))
+               )
+            }
           </ul>
         </aside>
         <main>
@@ -194,8 +227,10 @@ function App()  {
             <Route path='/image' component={ImageScreen}></Route>
             <Route path="/search/name/:name?" component={SearchScreen} exact ></Route>
             <Route path="/search/category/:category" component={SearchScreen} exact ></Route>
+            <Route path="/search/ville/:ville" component={SearchScreen} exact ></Route>
+            <Route path="/search/ville/:ville/name/:name"  component={SearchScreen}  exact ></Route>
             <Route path="/search/category/:category/name/:name"  component={SearchScreen}  exact ></Route>
-            <Route  path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber" component={SearchScreen} exact></Route>
+            <Route  path="/search/category/:category/name/:name//ville/:ville/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber" component={SearchScreen} exact></Route>
             <AdminRoute path="/productlist" component={ProductListScreen} exact></AdminRoute>
             <AdminRoute path="/productlist/pageNumber/:pageNumber" component={ProductListScreen} exact ></AdminRoute>
             <AdminRoute path='/ordersList' component={OrderListScreen} exact></AdminRoute>

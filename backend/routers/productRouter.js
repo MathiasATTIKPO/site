@@ -12,10 +12,11 @@ const  productRouter = express.Router();
 productRouter.get(
   '/',
   expressAsyncHandler(async (req, res) => {
-    const pageSize = 4;
+    const pageSize = 6;
     const page = Number(req.query.pageNumber) || 1;
     const name = req.query.name || '';
     const category = req.query.category || '';
+    const ville = req.query.ville || '';
     const seller = req.query.seller || '';
     const order = req.query.order || '';
 
@@ -31,6 +32,7 @@ productRouter.get(
     const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
     const sellerFilter = seller ? { seller } : {};
     const categoryFilter = category ? { category } : {};
+    const villeFilter = ville ? { ville } : {};
     const priceFilter = min && max ? { prix: { $gte: min, $lte: max } } : {};
     const ratingFilter = rating ? { rating: { $gte: rating } } : {};
     const sortOrder =
@@ -45,6 +47,7 @@ productRouter.get(
       ...sellerFilter,
       ...nameFilter,
       ...categoryFilter,
+      ...villeFilter,
       ...priceFilter,
       ...ratingFilter,
     });
@@ -53,6 +56,7 @@ productRouter.get(
       ...sellerFilter,
       ...nameFilter,
       ...categoryFilter,
+      ...villeFilter,
       ...priceFilter,
       ...ratingFilter,
     })
@@ -69,6 +73,14 @@ productRouter.get(
   expressAsyncHandler(async (req, res) => {
     const categories = await Product.find().distinct('category');
     res.send(categories);
+  })
+);
+
+productRouter.get(
+  '/villes',
+  expressAsyncHandler(async (req, res) => {
+    const villes = await Product.find().distinct('ville');
+    res.send(villes);
   })
 );
 
@@ -114,7 +126,8 @@ productRouter.post('/',
         const product = new Product({
           name: 'sample name ' + Date.now(),
           seller: req.user._id,
-          image: '/images/p1.jpg',
+          image: '/uploads/1654447369942.jpg',
+          ville : 'Lomé',
           nbreChbr:0,
           prix: 1,
           category: 'sample category',
@@ -139,6 +152,7 @@ productRouter.put(
         product.name = req.body.name;
         product.prix = req.body.prix;
         product.image = req.body.image;
+        product.ville = req.body.ville;
         product.nbreChbr = req.body.nbreChbr;
         product.category = req.body.category;
         product.countInStock = req.body.countInStock;
@@ -190,7 +204,7 @@ productRouter.post(
         product.reviews.length;
       const updatedProduct = await product.save();
       res.status(201).send({
-        message: 'Appreciation reçu',
+        message: 'Appréciation reçu',
         review: updatedProduct.reviews[updatedProduct.reviews.length - 1],
         numReviews: product.numReviews,
         rating: product.rating,
