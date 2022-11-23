@@ -88,7 +88,7 @@ export const listProductCategories = () => async (dispatch) => {
 export const listProductVilles = () => async (dispatch)=>{
   dispatch({ type: PRODUCT_VILLE_LIST_REQUEST});
   try {
-    const { data} = await Axios.get(`/api/products/ville`);
+    const { data } = await Axios.get(`/api/products/villes`);
     dispatch({ type: PRODUCT_VILLE_LIST_SUCCESS, payload: data });
     console.log(data);
   }catch (error){

@@ -80,7 +80,7 @@ export default function ChatBox(props) {
     <div className ="chatbox">
         {!isOpen ?(
             <button type="button" onClick={supportHandler}>
-                <i className="fa fa-support"></i>
+                <i class="fa-regular fa-message"></i>
             </button>
         ):(
             <div className="offre offre-body">
@@ -105,7 +105,11 @@ export default function ChatBox(props) {
                             type="text"
                             placeholder="Saisir un  message"
                         />
-              <button type="submit" className="">Envoyer</button>
+
+
+                    <button type="submit">  
+                        <i className="fa fa-paper-plane"></i>
+                    </button>
             </form>
                 </div>
             </div>

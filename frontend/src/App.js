@@ -63,9 +63,13 @@ function App()  {
 
   
   useEffect(() => {
-    dispatch(listProductCategories(), listProductVilles());
+    dispatch(listProductCategories());
   }, [dispatch]);
 
+  useEffect (() => {
+    dispatch(listProductVilles());
+  } , [dispatch]);
+  
   return (
     <BrowserRouter >
     <div className="grid-container">
@@ -198,12 +202,12 @@ function App()  {
                errorVille ?(
                 <MessageBox variant="danger">{errorVille}</MessageBox>
                ) : (
-                villes.map((c) =>(
-                  <li key={c}>
-                    <Link to={`/search/villes/${c}`}
+                villes.map((v) =>(
+                  <li key={v}>
+                    <Link to={`/search/ville/${v}`}
                     onClick={() => setSidebarIsOpen(false)}
                     >
-                      {c}
+                      {v}
                     </Link>
                   </li>
                 ))
@@ -226,8 +230,8 @@ function App()  {
             <Route path='/profile' component={ProfileScreen}></Route>
             <Route path='/image' component={ImageScreen}></Route>
             <Route path="/search/name/:name?" component={SearchScreen} exact ></Route>
-            <Route path="/search/category/:category" component={SearchScreen} exact ></Route>
-            <Route path="/search/ville/:ville" component={SearchScreen} exact ></Route>
+            <Route path="/search/category/:category" component={SearchScreen}  ></Route>
+            <Route path="/search/ville/:ville" component={SearchScreen}  ></Route>
             <Route path="/search/ville/:ville/name/:name"  component={SearchScreen}  exact ></Route>
             <Route path="/search/category/:category/name/:name"  component={SearchScreen}  exact ></Route>
             <Route  path="/search/category/:category/name/:name//ville/:ville/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber" component={SearchScreen} exact></Route>

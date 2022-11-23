@@ -15,8 +15,10 @@ export default function Product(props) {
           
         </Link>
         <div>
-        
-          <i className="fa fa-home" aria-hidden="true">{product.nbreChbr}</i>
+          <i className="fa fa-home"></i> {product.nbreChbr}
+        </div>
+        <div>
+            <i className="fa fa-location-dot"></i>  {product.ville} 
         </div>
        
         <Rating

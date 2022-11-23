@@ -82,6 +82,7 @@ export default function ProductListScreen(props) {
                 <th> Nom</th>
                 <th>Prix</th>
                 <th>Catégories</th>
+                <th>Ville</th>
                 <th>images</th>
                 <th>ACTIONS</th>
               </tr>
@@ -94,6 +95,7 @@ export default function ProductListScreen(props) {
                     <td>{product.name}</td>
                     <td>{product.prix}</td>
                     <td>{product.category}</td>
+                    <td>{product.ville}</td>
                     <td><img 
                                 src={product.image}
                                 alt={product.name}
