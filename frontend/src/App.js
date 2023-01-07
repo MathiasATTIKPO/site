@@ -205,7 +205,7 @@ function App()  {
                 villes.map((v) =>(
                   <li key={v}>
                     <Link to={`/search/ville/${v}`}
-                    onClick={() => setSidebarIsOpen(false)}
+                   // onClick={() => setSidebarIsOpen(false)}
                     >
                       {v}
                     </Link>
@@ -232,9 +232,9 @@ function App()  {
             <Route path="/search/name/:name?" component={SearchScreen} exact ></Route>
             <Route path="/search/category/:category" component={SearchScreen}  ></Route>
             <Route path="/search/ville/:ville" component={SearchScreen}  ></Route>
-            <Route path="/search/ville/:ville/name/:name"  component={SearchScreen}  exact ></Route>
+            <Route path="/search/ville/:ville/name/:name"  component={SearchScreen} exact></Route>
             <Route path="/search/category/:category/name/:name"  component={SearchScreen}  exact ></Route>
-            <Route  path="/search/category/:category/name/:name//ville/:ville/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber" component={SearchScreen} exact></Route>
+            <Route  path="/search/category/:category/name/:name/ville/:ville/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber" component={SearchScreen} exact></Route>
             <AdminRoute path="/productlist" component={ProductListScreen} exact></AdminRoute>
             <AdminRoute path="/productlist/pageNumber/:pageNumber" component={ProductListScreen} exact ></AdminRoute>
             <AdminRoute path='/ordersList' component={OrderListScreen} exact></AdminRoute>

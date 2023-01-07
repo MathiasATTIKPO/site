@@ -85,7 +85,7 @@ export default function DashboardScreen() {
           </ul>
           <div>
             <div>
-              <h2>Graphe </h2>
+              <h2>Graphe </h2> 
               {summary.dailyOrders.length === 0 ? (
                 <MessageBox>Aucun Loyer reçu </MessageBox>
               ) : (

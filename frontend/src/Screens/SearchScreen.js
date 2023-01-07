@@ -31,8 +31,8 @@ export default function SearchScreen(props) {
         dispatch( listProducts({
             pageNumber,
             name: name !== 'all' ? name :'',
-            category: category !=='all' ? category :'',
-            ville: ville !== 'all' ?ville :'',
+            category: category !== 'all' ? category :'',
+            ville: ville !== 'all' ? ville :'',
             min , max,rating , order
         }))
     }, [category , ville , dispatch , max , min , name , order , rating , pageNumber]);
@@ -41,12 +41,12 @@ export default function SearchScreen(props) {
         const filterPage = filter.page || pageNumber;
         const filterName = filter.name || name;
         const filterCategory = filter.category || category;
-        const filterVille    = filter.ville ||ville;
+        const filterVille = filter.ville || ville;
         const sortOrder = filter.order || order;
         const filterRating = filter.rating || rating;
         const filterMin = filter.min ? filter.min : filter.min === 0 ? 0 : min;
         const filterMax = filter.max ? filter.max : filter.max === 0 ? 0 : max;
-        return `/search/category/${filterCategory}/${filterVille}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
+        return `/search/category/${filterCategory}/ville/${filterVille}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
       };
   return (
     <div>
@@ -60,7 +60,7 @@ export default function SearchScreen(props) {
                 )
             }
             <div>
-                Sort by{''}
+               Trier{''}
                 <select value={order} onChange={(e)=>{
                     props.history.push(getFilterUrl({order:e.target.value}));
                 }}>
@@ -118,16 +118,30 @@ export default function SearchScreen(props) {
                     Toutes les villes
                   </Link>
                 </li>
-                {villes.map((c) => (
-                  <li key={c}>
+                {
+                
+                /*villes.map((v) => (
+                  <li key={v}>
                     <Link
-                      className={c === ville ? 'active' : ''}
-                      to={getFilterUrl({ ville: c })}
+                      className={v === ville ? 'active' : ''}
+                      to={getFilterUrl({ ville: v })}
                     >
-                      {c}
+                      {v}
                     </Link>
+
                   </li>
-                ))}
+                ))
+              */
+
+                villes.map((v) =>(
+                  <li key={v}>
+                    <Link to={`/search/ville/${v}`}
+                   // onClick={() => setSidebarIsOpen(false)}
+                    >
+                      {v}
+                    </Link>
+                  </li> ))
+              }
               </ul>
             )}
           </div>
